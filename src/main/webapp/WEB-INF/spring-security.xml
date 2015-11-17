@@ -7,11 +7,11 @@
            http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http use-expressions="true">
-		<intercept-url pattern="/admin/**"
+		<intercept-url pattern="/index/login*"
 			access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		<form-login login-page="/login.html" default-target-url="/admin/dashboard.html"
+		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/loginfailed" />
-		<logout logout-url="/logout" />
+		<logout logout-url="/login?logout" />
 		<access-denied-handler error-page="/403" />
 	</http>
 
@@ -22,7 +22,7 @@
 				authorities-by-username-query="select User.name, Role.name from User
 				 join user_role on User.id = user_role.user_id 
 				 join Role on user_role.role_id = Role.id where User.name=?"
-				users-by-username-query="select name, password, enable from User where name=? and enable=1" />
+				users-by-username-query="select name, passwd, enabled from User where name=? and enabled=1" />
 		</authentication-provider>
 	</authentication-manager>
 </beans:beans>

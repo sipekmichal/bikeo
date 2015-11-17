@@ -22,7 +22,7 @@ public class UserDaoImpl extends GenericDaoHibernateImpl<User, Integer>
 
 	public void disable(User user) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
-				"update User set enable = 0 where id = :id");
+				"update User set enabled = 0 where id = :id");
 		query.setParameter("id", user.getId());
 		query.executeUpdate();
 	}

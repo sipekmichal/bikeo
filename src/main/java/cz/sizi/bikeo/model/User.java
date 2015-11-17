@@ -38,9 +38,9 @@ public class User {
 	private String email;
 
 	@Size(min = 3, message = "Heslo musí obsahovat nejménì 3 znaky!")
-	private String password;
+	private String passwd;
 
-	private int enable;
+	private int enabled;
 
 	@NotEmpty
 	@ManyToMany
@@ -78,12 +78,12 @@ public class User {
 	}
 
 	public String getPassword() {
-		return password;
+		return passwd;
 	}
 
 	public void setPassword(String password) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		this.password = encoder.encode(password);
+		this.passwd = encoder.encode(password);
 	}
 
 	public List<Role> getRoles() {
@@ -94,12 +94,12 @@ public class User {
 		this.roles = roles;
 	}
 
-	public int getEnable() {
-		return enable;
+	public int getEnabled() {
+		return enabled;
 	}
 
 	public void setEnable(int enable) {
-		this.enable = enable;
+		this.enabled = enable;
 	}
 
 }
