@@ -7,20 +7,11 @@ import cz.sizi.bikeo.model.User;
 import cz.sizi.bikeo.service.RoleService;
 import cz.sizi.bikeo.service.UserService;
 
-/**
- * The UserController class accepts input and converts it to commands for the
- * model - User and views related to user.
- * 
- * @author Sipek Michal
- * @version 1.0
- * @since 2015-10-23
- */
 @Controller
 public class UserController {
 
 	@Autowired
 	UserService userService;
-	
 	
 	@Autowired
 	RoleService roleService;

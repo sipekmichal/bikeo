@@ -7,5 +7,7 @@
 	<session-factory>
 		<mapping class="cz.sizi.bikeo.model.User"></mapping>
 		<mapping class="cz.sizi.bikeo.model.Role"></mapping>
+		<mapping class="cz.sizi.bikeo.model.Video"></mapping>
+		<mapping class="cz.sizi.bikeo.model.Category"></mapping>
 	</session-factory>
 </hibernate-configuration>

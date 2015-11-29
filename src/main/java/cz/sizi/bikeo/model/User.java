@@ -12,14 +12,6 @@ import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/**
- * User entity
- * 
- * @author Sipek Michal
- * @version 1.0
- * @since 2014-10-13
- */
-
 @Entity
 public class User {
 

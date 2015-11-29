@@ -18,33 +18,38 @@ public class Category {
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
-	@Size(min=3, max=20, message="Název musí obsahovat 3-20 znakù!")
+
+	@Size(min = 3, max = 20, message = "Název musí obsahovat 3-20 znakù!")
 	private String name;
-	
+
 	@ManyToMany(mappedBy = "categories", cascade = CascadeType.REMOVE)
-	private List<Video> articles;
-	
+	private List<Video> videos;
+
 	/**
 	 * Getters and setters
 	 * */
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Video> getArticles() {
-		return articles;
+
+	public List<Video> getVideos() {
+		return videos;
 	}
-	public void setArticles(List<Video> articles) {
-		this.articles = articles;
+
+	public void setVideos(List<Video> videos) {
+		this.videos = videos;
 	}
-	
+
 }

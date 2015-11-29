@@ -144,16 +144,19 @@
 
 			<div class="span9">
 				<ul class="thumbnails">
-					<li class="span3">
-						<div class="thumbnail">
-							<span>kategorie</span> <img data-src="holder.js/300x200"
-								alt="300x200" style="width: 300px; height: 200px;"
-								src="img/h-3.jpg">
-							<div class="caption">
-								<h3>popisek</h3>
+					<c:forEach items="${videos}" var="video">
+						<li class="span3">
+							<div class="thumbnail">
+								<span>.</span>
+								<iframe width="500" height="300" src="${video.url}"
+									frameborder="0" allowfullscreen</iframe>
+								<div class="caption">
+									<h3>${video.title}</h3>
+								</div>
 							</div>
-						</div>
-					</li>
+						</li>
+					</c:forEach>
+
 				</ul>
 				<p>
 					<button type="submit" class="btn btn-large btn-block btn-blue"

@@ -10,12 +10,6 @@ import cz.sizi.bikeo.dao.UserDao;
 import cz.sizi.bikeo.model.User;
 import cz.sizi.bikeo.service.UserService;
 
-/**
- * @author Sipek Michal
- * @version 1.0
- * @since 2015-10-23
- */
-
 @Service
 @Transactional
 public class UserServiceImpl implements UserService {

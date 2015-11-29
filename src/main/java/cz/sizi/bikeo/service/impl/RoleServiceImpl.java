@@ -10,11 +10,6 @@ import cz.sizi.bikeo.dao.RoleDao;
 import cz.sizi.bikeo.model.Role;
 import cz.sizi.bikeo.service.RoleService;
 
-/**
- * @author Sipek Michal
- * @version 1.0
- * @since 2015-10-23
- */
 
 @Service
 @Transactional

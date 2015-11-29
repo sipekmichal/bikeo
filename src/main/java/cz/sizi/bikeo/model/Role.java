@@ -10,14 +10,6 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-/**
- * Role entity
- * 
- * @author Sipek Michal
- * @version 1.0
- * @since 2015-10-23
- */
-
 @Entity
 public class Role {
 
