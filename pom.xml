@@ -5,11 +5,12 @@
 	<artifactId>bikeo</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	
+
 	<properties>
 		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
 		<spring.security.version>3.2.3.RELEASE</spring.security.version>
-		<apache.tiles>3.0.5</apache.tiles>
+		<apache.tiles.version>3.0.5</apache.tiles.version>
+		<logback.version>1.1.3</logback.version>
 	</properties>
 
 	<dependencies>
@@ -31,7 +32,7 @@
 			<version>1.4</version>
 		</dependency>
 
-        <!-- Spring Security -->
+		<!-- Spring Security -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
@@ -113,6 +114,12 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${org.springframework.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 
 		<!-- Expression Language (depends on spring-core) Define this if you use 
@@ -228,19 +235,26 @@
 			<version>${org.springframework.version}</version>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<!-- Apache Tiles -->
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-core</artifactId>
-			<version>${apache.tiles}</version>
+			<version>${apache.tiles.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
-			<version>${apache.tiles}</version>
+			<version>${apache.tiles.version}</version>
 		</dependency>
+		
+		<!-- Logback -->
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+		<version>${logback.version}</version>
+	</dependency>
 	</dependencies>
 
 	<build>
