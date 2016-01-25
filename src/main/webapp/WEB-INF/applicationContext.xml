@@ -51,6 +51,7 @@
 			</props>
 		</property>
 	</bean>
+
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
@@ -61,7 +62,17 @@
 			value="org.springframework.web.servlet.view.tiles3.TilesView" />
 	</bean>
 
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- max upload size in bytes -->
+		<property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+
+		<!-- max size of file in memory (in bytes) -->
+		<property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+	</bean>
+
 	<import resource="spring-security.xml" />
+
 
 	<tx:annotation-driven />
 </beans>

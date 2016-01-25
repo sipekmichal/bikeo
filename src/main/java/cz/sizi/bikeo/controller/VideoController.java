@@ -1,14 +1,25 @@
 package cz.sizi.bikeo.controller;
 
 import java.beans.PropertyEditorSupport;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
+import org.hibernate.Hibernate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.web.header.writers.frameoptions.StaticAllowFromStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,8 +27,11 @@ import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import cz.sizi.bikeo.model.Category;
 import cz.sizi.bikeo.model.Video;
@@ -28,12 +42,15 @@ import cz.sizi.bikeo.service.VideoService;
 @Controller
 public class VideoController {
 
+	private static final Logger logger = LoggerFactory
+			.getLogger(VideoController.class);
+
 	@Autowired
 	VideoService videoService;
 
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	CategoryService categoryService;
 
@@ -66,21 +83,59 @@ public class VideoController {
 	 * */
 	@RequestMapping(value = "/videa/pridat", method = RequestMethod.POST)
 	public String saveVideo(Model model,
-			@Valid @ModelAttribute("video") Video video, BindingResult result) {
+			@RequestParam("image") MultipartFile file,
+			@ModelAttribute("video") Video video, BindingResult result) {
+		// TODO: @Valid - s tim zatim nefunguje vkladani file, pridat na
+		// validaci vkladanych objektu
 		if (result.hasErrors()) {
 			return showVideoAddPage(model);
 		}
-		Date publishDate = new Date();
-		video.setPublishDate(publishDate);
-		video.setEnabled(0);
-		video.setUrl(processUrl(video));
-		videoService.save(video);
-		return "index";
+
+		try {
+			Blob blob = Hibernate.createBlob(file.getInputStream());
+			video.setImage(blob);
+			logger.info("Image loaded, it's available at: " + "/image/"
+					+ video.getTitle() + ".jpg");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			Date publishDate = new Date();
+			video.setPublishDate(publishDate);
+			video.setEnabled(0);
+			video.setUrl(processUrl(video));
+			videoService.save(video);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return "redirect:/index.html?success=true";
+	}
+
+	@RequestMapping("/image/{videoId}.jpg")
+	public String accessTheVideoImage(Model model,
+			@PathVariable("videoId") Integer id, HttpServletResponse response) {
+		Video video = videoService.findById(id);
+		logger.debug("Video " + video.getId() + " found.");
+		try {
+			OutputStream out = response.getOutputStream();
+			IOUtils.copy(video.getImage().getBinaryStream(), out);
+			out.flush();
+			out.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return null;
 	}
 
 	/**
-	 * Method for processing youtube video link.
-	 * Workaround the same-origin security policy on iframes.
+	 * Method for processing youtube video link. Workaround the same-origin
+	 * security policy on iframes.
 	 * */
 	public String processUrl(Video video) {
 		String url = video.getUrl();
@@ -88,7 +143,7 @@ public class VideoController {
 		url = "https://www.youtube.com/v/" + tokens[1];
 		return url;
 	}
-	
+
 	/**
 	 * Binder for required date format
 	 * */
@@ -99,19 +154,22 @@ public class VideoController {
 		webDataBinder.registerCustomEditor(Date.class, "publishDate",
 				new CustomDateEditor(dateFormat, false));
 	}
-	
+
 	/**
 	 * Binder for resolving type mismatch and bind exceptions in POST
 	 * */
 	@InitBinder
-	protected void setCategoryAsString(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
-	    binder.registerCustomEditor(Category.class, "categories", new PropertyEditorSupport() {
-	    @Override
-	    public void setAsText(String text) {
-	        Category c = categoryService.findById(Integer.parseInt(text));
-	        setValue(c);
-	    }
-	    });
+	protected void setCategoryAsString(HttpServletRequest request,
+			ServletRequestDataBinder binder) throws Exception {
+		binder.registerCustomEditor(Category.class, "categories",
+				new PropertyEditorSupport() {
+					@Override
+					public void setAsText(String text) {
+						Category c = categoryService.findById(Integer
+								.parseInt(text));
+						setValue(c);
+					}
+				});
 	}
 
 }

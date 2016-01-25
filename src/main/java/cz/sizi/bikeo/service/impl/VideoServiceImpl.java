@@ -52,4 +52,9 @@ public class VideoServiceImpl implements VideoService {
 		return videoDao.findById(id);
 	}
 
+	@Override
+	public Video findByTitle(String title) {
+		return videoDao.findByTitle(title);
+	}
+
 }
