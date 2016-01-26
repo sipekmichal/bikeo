@@ -1,0 +1,7 @@
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.dialect=org.hibernate.dialect.MySQLDialect
+jdbc.databaseurl=jdbc:mysql://${db.ip}:${db.port}/${db.name}?autoReconnect=true&useUnicode=yes&characterEncoding=UTF-8
+jdbc.username=${db.user}
+jdbc.password=${db.password}
+hibernate.show_sql=true
+hibernate.hbm2ddl.auto=update

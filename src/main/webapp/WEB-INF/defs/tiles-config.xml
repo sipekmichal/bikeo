@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	<definition name="mainDefinition" template="/WEB-INF/layouts/main.jsp">
+		<put-attribute name="navbar" value="/WEB-INF/layouts/navbar.jsp" />
+		<put-attribute name="categoryMenu" value="/WEB-INF/layouts/categoryMenu.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+	</definition>
+
+	<definition name="adminDefinition" template="/WEB-INF/layouts/admin.jsp">
+		<put-attribute name="adminNavbar" value="/WEB-INF/layouts/adminNavbar.jsp" />
+	</definition>
+
+	<definition name="index" extends="mainDefinition">
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/index.jsp" />
+		<put-attribute name="pageTitle" value="bikeo.cz" />
+	</definition>
+
+	<definition name="dashboard" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="Přehled" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/dashboard.jsp" />
+		<put-attribute name="current" value="dashboard" />
+	</definition>
+
+</tiles-definitions>
