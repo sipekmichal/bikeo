@@ -10,7 +10,6 @@ import cz.sizi.bikeo.dao.RoleDao;
 import cz.sizi.bikeo.model.Role;
 import cz.sizi.bikeo.service.RoleService;
 
-
 @Service
 @Transactional
 public class RoleServiceImpl implements RoleService {

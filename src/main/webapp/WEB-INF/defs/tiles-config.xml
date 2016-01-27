@@ -3,24 +3,28 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-
+	
+	<!-- Main template for public pages -->
 	<definition name="mainDefinition" template="/WEB-INF/layouts/main.jsp">
 		<put-attribute name="navbar" value="/WEB-INF/layouts/navbar.jsp" />
 		<put-attribute name="categoryMenu" value="/WEB-INF/layouts/categoryMenu.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
 	</definition>
 
+	<!-- Main template for admin pages -->
 	<definition name="adminDefinition" template="/WEB-INF/layouts/admin.jsp">
 		<put-attribute name="adminNavbar" value="/WEB-INF/layouts/adminNavbar.jsp" />
 	</definition>
-
+	
+	<!-- Index page layout extends template for public pages -->
 	<definition name="index" extends="mainDefinition">
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/index.jsp" />
 		<put-attribute name="pageTitle" value="bikeo.cz" />
 	</definition>
 
+	<!-- Dashboard page layout extends template for admin pages -->
 	<definition name="dashboard" extends="adminDefinition">
-		<put-attribute name="pageTitle" value="Přehled" />
+		<put-attribute name="pageTitle" value="bikeo.cz - Přehled" />
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/dashboard.jsp" />
 		<put-attribute name="current" value="dashboard" />
 	</definition>

@@ -28,9 +28,6 @@ public class CategoryDaoImpl implements CategoryDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Category> findAll() {
-	///	for (Category c : findAll()) {
-			//logger.info("Category List::" + c);
-		//}
 		return sessionFactory.getCurrentSession().createQuery("from Category")
 				.list();
 	}

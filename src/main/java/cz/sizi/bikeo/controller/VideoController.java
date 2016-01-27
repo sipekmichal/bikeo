@@ -7,11 +7,9 @@ import java.sql.Blob;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.validation.Valid;
 
 import org.apache.commons.io.IOUtils;
 import org.hibernate.Hibernate;
@@ -19,7 +17,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.security.web.header.writers.frameoptions.StaticAllowFromStrategy;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,8 +39,7 @@ import cz.sizi.bikeo.service.VideoService;
 @Controller
 public class VideoController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(VideoController.class);
+	private static final Logger logger = LoggerFactory.getLogger(VideoController.class);
 
 	@Autowired
 	VideoService videoService;
@@ -85,17 +81,18 @@ public class VideoController {
 	public String saveVideo(Model model,
 			@RequestParam("image") MultipartFile file,
 			@ModelAttribute("video") Video video, BindingResult result) {
-		// TODO: @Valid - s tim zatim nefunguje vkladani file, pridat na
-		// validaci vkladanych objektu
+		
+		//pokud dojde k chybe pri bindovani na formulari
 		if (result.hasErrors()) {
+			logger.error("Binding error: " + result);
 			return showVideoAddPage(model);
 		}
 
 		try {
 			Blob blob = Hibernate.createBlob(file.getInputStream());
-			video.setImage(blob);
+			video.setImageBlob(blob);
 			logger.info("Image loaded, it's available at: " + "/image/"
-					+ video.getTitle() + ".jpg");
+					+ video.getId() + ".png");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -113,7 +110,7 @@ public class VideoController {
 		return "redirect:/index.html?success=true";
 	}
 
-	@RequestMapping("/image/{videoId}.jpg")
+	@RequestMapping("/image/{videoId}.png")
 	public String accessTheVideoImage(Model model,
 			@PathVariable("videoId") Integer id, HttpServletResponse response) {
 		Video video = videoService.findById(id);

@@ -16,10 +16,6 @@ public class UserController {
 	@Autowired
 	RoleService roleService;
 
-	@ModelAttribute("user")
-	public User construct() {
-		return new User();
-	}
 
 
 }

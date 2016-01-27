@@ -1,8 +1,9 @@
 <%@ include file="../layouts/taglibs.jsp"%>
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <c:if test="${param.success eq true}">
-	<div class="alert alert-success">Video bylo úspěšně přidáno.</div>
+	<div class="alert alert-success">Video bylo přidáno.</div>
 </c:if>
 
 <form:form commandName="video"
@@ -59,7 +60,7 @@
 
 	<div class="form-group">
 		<div class="col-sm-2">
-			<input type="submit" value="Uložit" class="btn btn-primary">
+			<input type="submit" value="Nahrát" class="btn btn-primary">
 		</div>
 	</div>
 </form:form>

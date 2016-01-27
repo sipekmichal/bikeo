@@ -60,6 +60,7 @@
 				</div>
 			</div>
 		</div>
+		
 		<!-- End Search Section  -->
 
 		<!-- Start Left Sidebar  -->
@@ -70,20 +71,21 @@
 						<tiles:insertAttribute name="categoryMenu" />
 					</div>
 				</div>
-				</ul>
 			</div>
-		</div>
-	</div>
+		
+	
 	<!-- End Left Sidebar  -->
 
 	<!-- Start Body Content  -->
 	<div class="span9">
-		<tiles:insertAttribute name="bodyContent" />
+		<ul class="thumbnails">
+			<tiles:insertAttribute name="bodyContent" />
+		</ul>
 	</div>
 	</div>
+	
 	<!-- Body Content  -->
-
-	</div>
+</div>
 	<!-- End Main Content -->
 
 	<!-- Start Footer -->

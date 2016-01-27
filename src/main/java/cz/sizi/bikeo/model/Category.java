@@ -2,7 +2,6 @@ package cz.sizi.bikeo.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -19,10 +18,10 @@ public class Category {
 	@GeneratedValue
 	private Integer id;
 
-	@Size(min = 3, max = 20, message = "Název musí obsahovat 3-20 znakù!")
+	@Size(min = 3, max = 20, message = "NÃ¡zev musÃ­ obsahovat 3-20 znakÅ¯!")
 	private String name;
 
-	@ManyToMany(mappedBy = "categories", cascade = CascadeType.REMOVE)
+	@ManyToMany(mappedBy = "categories")
 	private List<Video> videos;
 
 	/**

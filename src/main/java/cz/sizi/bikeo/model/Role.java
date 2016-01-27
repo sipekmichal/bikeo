@@ -19,15 +19,13 @@ public class Role {
 	@Id
 	@GeneratedValue
 	private Integer id;
+	
 	@Size(min = 3, max = 60)
 	private String name;
 
 	@NotEmpty
 	@ManyToMany(mappedBy = "roles")
 	private List<User> users;
-
-	public Role() {
-	}
 
 	/**
 	 * Getters and setters

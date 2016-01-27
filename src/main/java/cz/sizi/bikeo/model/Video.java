@@ -13,9 +13,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Video {
@@ -47,6 +49,9 @@ public class Video {
 	@ManyToMany(cascade = CascadeType.REMOVE)
 	@JoinTable(name = "video_category", joinColumns = { @JoinColumn(name = "video_id") }, inverseJoinColumns = { @JoinColumn(name = "category_id") })
 	private List<Category> categories;
+	
+	@Transient
+	private MultipartFile imageMultipart;
 
 	@Lob
 	private Blob image;
@@ -118,11 +123,19 @@ public class Video {
 		this.enabled = enabled;
 	}
 
+	public MultipartFile getMultipartImage() {
+		return imageMultipart;
+	}
+
+	public void setImage(MultipartFile image) {
+		this.imageMultipart = image;
+	}
+	
 	public Blob getImage() {
 		return image;
 	}
 
-	public void setImage(Blob image) {
+	public void setImageBlob(Blob image) {
 		this.image = image;
 	}
 }

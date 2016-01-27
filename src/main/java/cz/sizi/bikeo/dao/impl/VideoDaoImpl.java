@@ -71,13 +71,14 @@ public class VideoDaoImpl implements VideoDao {
 		query.setParameter("id", video.getId());
 		query.executeUpdate();
 	}
-// TODO: dotaz vylepsit, tohle je prasarna
+	
+	// TODO: dotaz vylepsit, tohle je prasarna
 	@Override
 	public Video findByTitle(String title) {
 		return (Video) sessionFactory
 		.getCurrentSession()
 		.createQuery(
-				"from Video where title='"+title+"'").uniqueResult();
+				"from Video where title='" + title + "'").uniqueResult();
 	}
 
 }
