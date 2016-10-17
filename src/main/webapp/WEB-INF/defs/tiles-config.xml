@@ -6,6 +6,7 @@
 	
 	<!-- Main template for public pages -->
 	<definition name="mainDefinition" template="/WEB-INF/layouts/main.jsp">
+		<put-attribute name="pageTitle" value="bikeo.cz" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/navbar.jsp" />
 		<put-attribute name="categoryMenu" value="/WEB-INF/layouts/categoryMenu.jsp" />
 		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
@@ -14,6 +15,11 @@
 	<!-- Main template for admin pages -->
 	<definition name="adminDefinition" template="/WEB-INF/layouts/admin.jsp">
 		<put-attribute name="adminNavbar" value="/WEB-INF/layouts/adminNavbar.jsp" />
+	</definition>
+	
+	<definition name="registration" extends="mainDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Registrace" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/registration.jsp" />
 	</definition>
 	
 	<!-- Index page layout extends template for public pages -->
@@ -28,5 +34,7 @@
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/dashboard.jsp" />
 		<put-attribute name="current" value="dashboard" />
 	</definition>
+	
+	
 
 </tiles-definitions>

@@ -27,7 +27,7 @@
 							type="password" name="j_password" class="form-control"
 							placeholder="Heslo" required>
 							<button class="btn btn-blue btn-block" type="submit">Přihlásit se</button>
-							<a href="">Registrovat </a>
+							<a href="register">Registrovat </a>
 					'
 					data-original-title="Přihlášení"><div class="fs1" aria-hidden="true" data-icon="&#xe041;"></div></a>
 				</li>
