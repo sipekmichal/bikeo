@@ -69,13 +69,13 @@ public class User {
 		this.email = email;
 	}
 
-	public String getPassword() {
+	public String getPasswd() {
 		return passwd;
 	}
 
-	public void setPassword(String password) {
+	public void setPasswd(String passwd) {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		this.passwd = encoder.encode(password);
+		this.passwd = encoder.encode(passwd);
 	}
 
 	public List<Role> getRoles() {
@@ -90,8 +90,8 @@ public class User {
 		return enabled;
 	}
 
-	public void setEnable(int enable) {
-		this.enabled = enable;
+	public void setEnabled(int enabled) {
+		this.enabled = enabled;
 	}
 
 }
