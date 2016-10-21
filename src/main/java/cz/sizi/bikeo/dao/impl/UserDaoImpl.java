@@ -5,6 +5,8 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import cz.sizi.bikeo.dao.UserDao;
@@ -21,14 +23,6 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void disable(User user) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"update User set enabled = 0 where id = :id");
-		query.setParameter("id", user.getId());
-		query.executeUpdate();
-	}
-
-	@Override
 	public User findByName(String name) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from User where name = :name");
@@ -40,13 +34,24 @@ public class UserDaoImpl implements UserDao {
 	@Override
 	public List<User> findAll() {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from User where enabled = 1").list();
+				.createQuery("from User").list();
 	}
 
 	@Override
 	public User save(User user) {
-		// TODO Auto-generated method stub
-		return null;
+
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		Query query = sessionFactory.getCurrentSession().createSQLQuery(
+				"INSERT INTO User(ID, EMAIL, ENABLED, NAME, PASSWD) "
+				+ "VALUES (:id, :email, :enabled, :name, :passwd)");
+		
+		query.setParameter("id", user.getId());
+		query.setParameter("enabled", 1);
+		query.setParameter("email", user.getEmail());
+		query.setParameter("name", user.getName());
+		query.setParameter("passwd", user.getPasswd());
+		query.executeUpdate();
+		return user;
 	}
 
 	@Override
@@ -63,8 +68,16 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from User where id = :id");
+		query.setParameter("id", id);
+		User user = (User) query.uniqueResult();
+		return user;
 	}
 
+	@Override
+	public void disable(User user) {
+		// TODO Auto-generated method stub
+		
+	}
 }
