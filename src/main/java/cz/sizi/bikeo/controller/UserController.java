@@ -46,6 +46,7 @@ public class UserController {
 			System.out.println(bindingResult.getAllErrors().toString());
 			return "registration";
 		}
+		// tady naplnit uzivatele roli
 		userService.save(user);
 		// login page ?
 		return "registrationSuccess";
