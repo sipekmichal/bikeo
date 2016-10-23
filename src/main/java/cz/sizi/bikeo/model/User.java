@@ -7,17 +7,17 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Transient;
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User {
 
 	/**
 	 * Attributes
-	 * */
+	 */
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -31,12 +31,23 @@ public class User {
 
 	@Size(min = 3, message = "Heslo musí obsahovat nejménì 3 znaky!")
 	private String passwd;
+	
+	@Transient
+	@Size(min = 3, message = "Heslo musí obsahovat nejménì 3 znaky!")
+	private String confirmPasswd;
+	
+	//jak zobrazit tuto hlášku v jsp?
+	@AssertTrue(message = "Hesla musí být totožná!")
+	private boolean isValid() {
+		return this.passwd.equals(this.confirmPasswd);
+	}
 
 	private int enabled;
 
-	@NotEmpty
+	// @NotEmpty // - delam kvuli formulari - vynucuje si to zadat roli z jsp
 	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = { @JoinColumn(name = "role_id") })
+	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "role_id") })
 	private List<Role> roles;
 
 	public User() {
@@ -44,7 +55,7 @@ public class User {
 
 	/**
 	 * Getters and setters
-	 * */
+	 */
 	public Integer getId() {
 		return id;
 	}
@@ -74,8 +85,7 @@ public class User {
 	}
 
 	public void setPasswd(String passwd) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		this.passwd = encoder.encode(passwd);
+		this.passwd = passwd;
 	}
 
 	public List<Role> getRoles() {
@@ -94,4 +104,11 @@ public class User {
 		this.enabled = enabled;
 	}
 
+	public String getConfirmPasswd() {
+		return confirmPasswd;
+	}
+
+	public void setConfirmPasswd(String confirmPasswd) {
+		this.confirmPasswd = confirmPasswd;
+	}
 }

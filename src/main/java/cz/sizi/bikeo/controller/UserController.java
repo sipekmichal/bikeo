@@ -2,11 +2,14 @@ package cz.sizi.bikeo.controller;
 
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.hibernate.validator.internal.constraintvalidators.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +24,7 @@ public class UserController {
 
 	@Autowired
 	UserService userService;
-	
+
 	@Autowired
 	RoleService roleService;
 
@@ -29,19 +32,22 @@ public class UserController {
 	public String registration(Model model) {
 		// implement your own registration logic here...
 		User user = new User();
-		
+
 		model.addAttribute("userForm", user);
-		
+
 		return "registration";
 	}
-	
-	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String save(@ModelAttribute("userForm") User user, Model model) {
-		
-		userService.save(user);
-		
-		//login page ?
-		return "redirect:/index";
-	}
 
+	@RequestMapping(value = "/register", method = RequestMethod.POST)
+	public String save(@Valid @ModelAttribute("userForm") User user, BindingResult bindingResult, Model model) {
+
+		if (bindingResult.hasErrors()) {
+			System.out.println(bindingResult.getErrorCount());
+			System.out.println(bindingResult.getAllErrors().toString());
+			return "registration";
+		}
+		userService.save(user);
+		// login page ?
+		return "registrationSuccess";
+	}
 }

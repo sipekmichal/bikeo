@@ -25,5 +25,8 @@
 				users-by-username-query="select email, passwd, enabled from User where email=? and enabled=1" />
 		</authentication-provider>
 	</authentication-manager>
+	
+	<beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	
 </beans:beans>
 

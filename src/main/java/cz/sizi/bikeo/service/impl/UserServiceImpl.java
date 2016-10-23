@@ -3,6 +3,7 @@ package cz.sizi.bikeo.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +17,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
+	
+	@Autowired
+    private PasswordEncoder passwordEncoder;
 
 	@Override
 	public List<User> findAll() {
@@ -24,6 +28,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User save(User user) {
+		user.setPasswd(passwordEncoder.encode(user.getPasswd()));
 		return userDao.save(user);
 	}
 

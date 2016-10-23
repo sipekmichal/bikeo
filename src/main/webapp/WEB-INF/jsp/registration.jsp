@@ -11,7 +11,7 @@
 	<form:form method="post" action="${userActionUrl}"
 		modelAttribute="userForm">
 		<center>
-			<table width="40%" cellpadding="5">
+			<table width="80%" cellpadding="5">
 				<thead>
 					<tr>
 						<h3>Registrace</h3>
@@ -24,6 +24,7 @@
 							<td>Uživatelské jméno</td>
 							<td><form:input path="name" id="name" type="text"
 									name="name" value="" /></td>
+							<td style="color: #FF0000"><form:errors path="name" /></td>
 						</tr>
 					</spring:bind>
 					<spring:bind path="email">
@@ -31,6 +32,7 @@
 							<td>E-mail</td>
 							<td><form:input path="email" id="email" type="text"
 									name="email" value="" /></td>
+							<td style="color: #FF0000"><form:errors path="email" /></td>
 						</tr>
 					</spring:bind>
 					<spring:bind path="passwd">
@@ -38,18 +40,22 @@
 							<td>Heslo</td>
 							<td><form:input path="passwd" id="passwd" type="password"
 									name="passwd" value="" /></td>
+							<td style="color: #FF0000"><form:errors path="passwd" /></td>
 						</tr>
 					</spring:bind>
-					<tr>
-						<td>Heslo znovu</td>
-						<td><input type="password" name="pass" value="" /></td>
-					</tr>
+					<spring:bind path="confirmPasswd">
+						<tr>
+							<td>Heslo znovu</td>
+							<td><form:input path="confirmPasswd" type="password"
+									name="confirmPasswd" id="confirmPasswd" value="" /></td>
+							<td style="color: #FF0000"><form:errors path="confirmPasswd" /></td>
+						</tr>
+					</spring:bind>
 					<tr>
 						<td></td>
 						<td><input type="submit" value="Registrovat"
 							class="btn btn-blue" style="font-weight: bold;" /> <input
 							type="reset" value="Reset" class="btn btn-blue" /></td>
-
 					</tr>
 					<tr>
 						<td colspan="2">Již registrován? <a href="#">Přihlaš se</a></td>

@@ -39,8 +39,6 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User save(User user) {
-
-		KeyHolder keyHolder = new GeneratedKeyHolder();
 		Query query = sessionFactory.getCurrentSession().createSQLQuery(
 				"INSERT INTO User(ID, EMAIL, ENABLED, NAME, PASSWD) "
 				+ "VALUES (:id, :email, :enabled, :name, :passwd)");

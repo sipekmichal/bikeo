@@ -35,6 +35,10 @@
 		<put-attribute name="current" value="dashboard" />
 	</definition>
 	
+	<definition name="registrationSuccess" extends="index">
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/registrationSuccess.jsp" />
+	</definition>
+	
 	
 
 </tiles-definitions>
