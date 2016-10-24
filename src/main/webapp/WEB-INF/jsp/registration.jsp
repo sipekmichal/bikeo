@@ -58,7 +58,7 @@
 							type="reset" value="Reset" class="btn btn-blue" /></td>
 					</tr>
 					<tr>
-						<td colspan="2">Již registrován? <a href="#">Přihlaš se</a></td>
+						<td colspan="2">Již registrován? <a href="/bikeo/login">Přihlaš se</a></td>
 					</tr>
 				</tbody>
 			</table>

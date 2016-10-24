@@ -30,11 +30,8 @@ public class UserController {
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registration(Model model) {
-		// implement your own registration logic here...
 		User user = new User();
-
 		model.addAttribute("userForm", user);
-
 		return "registration";
 	}
 
@@ -46,9 +43,12 @@ public class UserController {
 			System.out.println(bindingResult.getAllErrors().toString());
 			return "registration";
 		}
-		// tady naplnit uzivatele roli
 		userService.save(user);
-		// login page ?
+		return "redirect:/registrationSuccess";
+	}
+	
+	@RequestMapping(value = "/registrationSuccess", method = RequestMethod.GET)
+	public String registrationSucces() {
 		return "registrationSuccess";
 	}
 }

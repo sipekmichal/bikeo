@@ -8,7 +8,7 @@
 </head>
 <body>
 	<center>
-		Registrace úspěšně dokončena. <a href="#">Přihlásit se</a>
+		Registrace úspěšně dokončena. <a href="/bikeo/login">Přihlásit se</a>
 	</center>
 </body>
 </html>
