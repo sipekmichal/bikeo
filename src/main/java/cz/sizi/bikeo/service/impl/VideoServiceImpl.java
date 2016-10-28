@@ -48,7 +48,7 @@ public class VideoServiceImpl implements VideoService {
 	}
 
 	@Override
-	public Video findById(Integer id) {
+	public Video findById(Long id) {
 		return videoDao.findById(id);
 	}
 

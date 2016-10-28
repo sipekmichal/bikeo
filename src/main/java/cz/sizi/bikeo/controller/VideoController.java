@@ -112,7 +112,7 @@ public class VideoController {
 
 	@RequestMapping("/image/{videoId}.png")
 	public String accessTheVideoImage(Model model,
-			@PathVariable("videoId") Integer id, HttpServletResponse response) {
+			@PathVariable("videoId") Long id, HttpServletResponse response) {
 		Video video = videoService.findById(id);
 		logger.debug("Video " + video.getId() + " found.");
 		try {
@@ -162,8 +162,8 @@ public class VideoController {
 				new PropertyEditorSupport() {
 					@Override
 					public void setAsText(String text) {
-						Category c = categoryService.findById(Integer
-								.parseInt(text));
+						Category c = categoryService.findById(Long
+								.parseLong(text));
 						setValue(c);
 					}
 				});

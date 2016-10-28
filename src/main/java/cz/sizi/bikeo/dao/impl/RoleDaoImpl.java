@@ -35,7 +35,7 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	@Override
-	public Role findById(Integer id) {
+	public Role findById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

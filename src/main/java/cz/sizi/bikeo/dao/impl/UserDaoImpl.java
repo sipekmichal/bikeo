@@ -65,7 +65,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User findById(Integer id) {
+	public User findById(Long id) {
 		Query query = sessionFactory.getCurrentSession().createQuery(
 				"from User where id = :id");
 		query.setParameter("id", id);

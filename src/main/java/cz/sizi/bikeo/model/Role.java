@@ -1,9 +1,9 @@
 package cz.sizi.bikeo.model;
 
-import java.util.List;
-
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.validation.constraints.Size;
@@ -17,24 +17,24 @@ public class Role {
 	 * Attributes
 	 * */
 	@Id
-	@GeneratedValue
-	private Integer id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	
 	@Size(min = 3, max = 60)
 	private String name;
 
 	@NotEmpty
 	@ManyToMany(mappedBy = "roles")
-	private List<User> users;
+	private Set<User> users;
 
 	/**
 	 * Getters and setters
 	 * */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -46,11 +46,11 @@ public class Role {
 		this.name = name;
 	}
 
-	public List<User> getUsers() {
+	public Set<User> getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<User> users) {
+	public void setUsers(Set<User> users) {
 		this.users = users;
 	}
 

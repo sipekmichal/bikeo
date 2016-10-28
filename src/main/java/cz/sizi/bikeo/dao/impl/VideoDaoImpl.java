@@ -42,7 +42,7 @@ public class VideoDaoImpl implements VideoDao {
 	}
 
 	@Override
-	public Video findById(Integer id) {
+	public Video findById(Long id) {
 		return (Video) sessionFactory.getCurrentSession().get(Video.class,
 				(Serializable) id);
 	}
