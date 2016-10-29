@@ -1,6 +1,7 @@
 package cz.sizi.bikeo.model;
 
-import java.util.List;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -20,47 +21,45 @@ public class User {
 	 */
 	@Id
 	@GeneratedValue
-	private Integer id;
+	private Long id;
 
-	@Size(min = 3, max = 20, message = "Jméno musí obsahovat 3-20 znakù!")
+	@Size(min = 3, max = 20, message = "JmÃ©no musÃ­ obsahovat 3-20 znakÅ¯!")
 	private String name;
 
-	@Size(min = 1, message = "Špatnı formát mailové adresy!")
-	@Email(message = "Špatnı formát mailové adresy!")
+	@Size(min = 1, message = "Å patnÃ½ formÃ¡t mailovÃ© adresy!")
+	@Email(message = "Å patnÃ½ formÃ¡t mailovÃ© adresy!")
 	private String email;
 
-	@Size(min = 3, message = "Heslo musí obsahovat nejménì 3 znaky!")
+	@Size(min = 3, message = "Heslo musÃ­ obsahovat nejmÃ©nÄ› 3 znaky!")
 	private String passwd;
-	
+
 	@Transient
-	@Size(min = 3, message = "Heslo musí obsahovat nejménì 3 znaky!")
+	@Size(min = 3, message = "Heslo musÃ­ obsahovat nejmÃ©nÄ› 3 znaky!")
 	private String confirmPasswd;
-	
-	//jak zobrazit tuto hlášku v jsp?
-	@AssertTrue(message = "Hesla musí bıt totoná!")
+
+	@AssertTrue(message = "Hesla se musÃ­ shodovat!")
 	private boolean isValid() {
 		return this.passwd.equals(this.confirmPasswd);
 	}
 
 	private int enabled;
-
-	// @NotEmpty // - delam kvuli formulari - vynucuje si to zadat roli z jsp
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "role_id") })
-	private List<Role> roles;
-
+	
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
+	
 	public User() {
+		
 	}
 
 	/**
 	 * Getters and setters
 	 */
-	public Integer getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -88,11 +87,11 @@ public class User {
 		this.passwd = passwd;
 	}
 
-	public List<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
 

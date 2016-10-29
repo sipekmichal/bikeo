@@ -5,8 +5,6 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import cz.sizi.bikeo.dao.UserDao;
@@ -31,12 +29,14 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
 		return sessionFactory.getCurrentSession()
 				.createQuery("from User").list();
 	}
 
+	// TODO: takhle ne, prepsat
 	@Override
 	public User save(User user) {
 		Query query = sessionFactory.getCurrentSession().createSQLQuery(
@@ -54,14 +54,13 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User update(User user) {
-		// TODO Auto-generated method stub
-		return null;
+		sessionFactory.getCurrentSession().update(user);
+		return user;
 	}
 
 	@Override
 	public void remove(User user) {
-		// TODO Auto-generated method stub
-
+		sessionFactory.getCurrentSession().delete(user);
 	}
 
 	@Override
@@ -75,7 +74,9 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void disable(User user) {
-		// TODO Auto-generated method stub
-		
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"update User set enabled = 0 where id = :id");
+		query.setParameter("id", user.getId());
+		query.executeUpdate();		
 	}
 }
