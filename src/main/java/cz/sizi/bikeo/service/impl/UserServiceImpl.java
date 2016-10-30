@@ -1,12 +1,16 @@
 package cz.sizi.bikeo.service.impl;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import cz.sizi.bikeo.dao.RoleDao;
 import cz.sizi.bikeo.dao.UserDao;
+import cz.sizi.bikeo.model.Role;
 import cz.sizi.bikeo.model.User;
 import cz.sizi.bikeo.service.UserService;
 
@@ -17,8 +21,11 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 	
-	@Autowired
-    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private RoleDao roleDao;
+    
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Override
 	public List<User> findAll() {
@@ -26,9 +33,10 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User save(User user) {
-		user.setPasswd(passwordEncoder.encode(user.getPasswd()));
-		return userDao.save(user);
+	public void save(User user) {
+        user.setPasswd(bCryptPasswordEncoder.encode(user.getPasswd()));
+        user.setRoles(new HashSet<Role>(roleDao.findAll()));
+        userDao.save(user);
 	}
 
 	@Override
@@ -54,8 +62,14 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findByName(String name) {
-		return userDao.findByName(name);
+	public User findByUsername(String username) {
+		return userDao.findByUserName(username);
+	}
+
+	@Override
+	public User findByUserName(String username) {
+		return userDao.findByUserName(username);
+
 	}
 
 }
