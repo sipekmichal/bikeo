@@ -5,11 +5,12 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 
@@ -30,11 +31,12 @@ public class User {
 	@Email(message = "Špatný formát mailové adresy!")
 	private String email;
 
-	@Size(min = 3, message = "Heslo musí obsahovat nejméně 3 znaky!")
+	@NotNull
+	@Size(min = 6, message = "Heslo musí obsahovat nejméně 6 znaků!")
 	private String passwd;
 
 	@Transient
-	@Size(min = 3, message = "Heslo musí obsahovat nejméně 3 znaky!")
+	@Size(min = 6, message = "Heslo musí obsahovat nejméně 6 znaků!")
 	private String confirmPasswd;
 
 	@AssertTrue(message = "Hesla se musí shodovat!")
@@ -42,14 +44,28 @@ public class User {
 		return this.passwd.equals(this.confirmPasswd);
 	}
 
-	private int enabled;
-	
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private boolean enabled;
+
+	@ManyToMany
+	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
-	
+
 	public User() {
-		
+	}
+
+	public User(String email, String name, String password, boolean enabled) {
+		this.email = email;
+		this.name = name;
+		this.passwd = password;
+		this.enabled = enabled;
+	}
+
+	public User(String email, String name, String password, boolean enabled, Set<Role> roles) {
+		this.email = email;
+		this.name = name;
+		this.passwd = password;
+		this.enabled = enabled;
+		this.roles = roles;
 	}
 
 	/**
@@ -87,6 +103,22 @@ public class User {
 		this.passwd = passwd;
 	}
 
+	public String getConfirmPasswd() {
+		return confirmPasswd;
+	}
+
+	public void setConfirmPasswd(String confirmPasswd) {
+		this.confirmPasswd = confirmPasswd;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
+	}
+
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -95,19 +127,4 @@ public class User {
 		this.roles = roles;
 	}
 
-	public int getEnabled() {
-		return enabled;
-	}
-
-	public void setEnabled(int enabled) {
-		this.enabled = enabled;
-	}
-
-	public String getConfirmPasswd() {
-		return confirmPasswd;
-	}
-
-	public void setConfirmPasswd(String confirmPasswd) {
-		this.confirmPasswd = confirmPasswd;
-	}
 }

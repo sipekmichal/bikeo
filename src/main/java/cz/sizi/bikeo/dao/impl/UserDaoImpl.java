@@ -21,9 +21,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User findByName(String name) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from User where name = :name");
+	public User findByUserName(String name) {
+		Query query = sessionFactory.getCurrentSession().createQuery("from User where name = :name");
 		query.setParameter("name", name);
 		User user = (User) query.uniqueResult();
 		return user;
@@ -32,24 +31,13 @@ public class UserDaoImpl implements UserDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
-		return sessionFactory.getCurrentSession()
-				.createQuery("from User").list();
+		return sessionFactory.getCurrentSession().createQuery("from User").list();
 	}
 
-	// TODO: takhle ne, prepsat
 	@Override
-	public User save(User user) {
-		Query query = sessionFactory.getCurrentSession().createSQLQuery(
-				"INSERT INTO User(ID, EMAIL, ENABLED, NAME, PASSWD) "
-				+ "VALUES (:id, :email, :enabled, :name, :passwd)");
-		
-		query.setParameter("id", user.getId());
-		query.setParameter("enabled", 1);
-		query.setParameter("email", user.getEmail());
-		query.setParameter("name", user.getName());
-		query.setParameter("passwd", user.getPasswd());
-		query.executeUpdate();
-		return user;
+	public void save(User user) {
+		sessionFactory.getCurrentSession().save(user);
+
 	}
 
 	@Override
@@ -65,8 +53,7 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public User findById(Long id) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from User where id = :id");
+		Query query = sessionFactory.getCurrentSession().createQuery("from User where id = :id");
 		query.setParameter("id", id);
 		User user = (User) query.uniqueResult();
 		return user;
@@ -74,9 +61,5 @@ public class UserDaoImpl implements UserDao {
 
 	@Override
 	public void disable(User user) {
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"update User set enabled = 0 where id = :id");
-		query.setParameter("id", user.getId());
-		query.executeUpdate();		
 	}
 }
