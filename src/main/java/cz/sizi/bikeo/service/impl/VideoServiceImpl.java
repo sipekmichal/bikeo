@@ -33,8 +33,8 @@ public class VideoServiceImpl implements VideoService {
 	}
 
 	@Override
-	public Video save(Video video) {
-		return videoDao.save(video);
+	public void save(Video video) {
+		videoDao.save(video);
 	}
 
 	@Override

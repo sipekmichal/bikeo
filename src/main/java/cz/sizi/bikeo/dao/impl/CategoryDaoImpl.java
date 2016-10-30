@@ -33,10 +33,9 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public Category save(Category category) {
+	public void save(Category category) {
 		sessionFactory.getCurrentSession().save(category);
 		logger.info("Category saved successfully, Category Details=" + category);
-		return category;
 	}
 
 	@Override

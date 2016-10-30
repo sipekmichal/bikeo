@@ -21,6 +21,7 @@ public class VideoDaoImpl implements VideoDao {
 		this.sessionFactory = sessionFactory;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Video> findAll() {
 		return sessionFactory
@@ -31,9 +32,8 @@ public class VideoDaoImpl implements VideoDao {
 	}
 
 	@Override
-	public Video save(Video video) {
+	public void save(Video video) {
 		sessionFactory.getCurrentSession().save(video);
-		return video;
 	}
 
 	@Override
@@ -60,6 +60,7 @@ public class VideoDaoImpl implements VideoDao {
 				.createQuery(
 						"from Video where publishDate like ':date%' order by publishDate ASC");
 		query.setParameter("date", date);
+		@SuppressWarnings("unchecked")
 		List<Video> videos = query.list();
 		return videos;
 	}
