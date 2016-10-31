@@ -77,10 +77,8 @@
 	<!-- End Left Sidebar  -->
 
 	<!-- Start Body Content  -->
-	<div class="span9">
-		<ul class="thumbnails">
-			<tiles:insertAttribute name="bodyContent" />
-		</ul>
+	<div class="span9">		
+		<tiles:insertAttribute name="bodyContent" />
 	</div>
 	</div>
 	

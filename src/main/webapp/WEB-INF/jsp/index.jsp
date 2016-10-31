@@ -2,21 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layouts/taglibs.jsp"%>
 
-<c:forEach items="${videos}" var="video">
-	<li class="span3">
- 		<div class="thumbnail"> 
-			<span>.</span> <img 
- 				src="${pageContext.request.contextPath}/image/${video.id}.png"
-				alt="${video.title}"> 
+<ul class="thumbnails">
+	<c:forEach items="${videos}" var="video">
+		<li class="span3">
+			<div class="thumbnail">
+				<span>.</span> <img
+					src="${pageContext.request.contextPath}/image/${video.id}.png"
+					alt="${video.title}">
 
- 			<div class="caption"> 
- 				<h3>${video.title}</h3> 
- 			</div> 
- 		</div> 
- 	</li>
-</c:forEach> 
+				<div class="caption">
+					<h3>${video.title}</h3>
+				</div>
+			</div>
+		</li>
+	</c:forEach>
+</ul>
 
-                    
+
+
 <!-- <p>*asdasfsadf</p> -->
 
 <%-- <c:forEach items="${videos}" var="video"> --%>
