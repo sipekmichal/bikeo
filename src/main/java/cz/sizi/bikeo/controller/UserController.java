@@ -21,12 +21,12 @@ public class UserController {
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registration(Model model) {
 		User user = new User();
-		model.addAttribute("userForm", user);
+		model.addAttribute("user", user);
 		return "registration";
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public String save(@Valid @ModelAttribute("userForm") User user, BindingResult bindingResult, Model model) {
+	public String save(@Valid @ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			System.out.println(bindingResult.getErrorCount());
@@ -34,6 +34,10 @@ public class UserController {
 			return "registration";
 		}
 
+		if (!user.isValid()) {
+			//zde vyhodit do jsp hlasku..nejdriv se ale pokusit najit na netu, jak se to dela
+		}
+		
 		user.setEnabled(true);
 		userService.save(user);
 

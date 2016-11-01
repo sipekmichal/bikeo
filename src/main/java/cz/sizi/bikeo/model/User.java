@@ -36,19 +36,13 @@ public class User {
 	private String passwd;
 
 	@Transient
-	@Size(min = 6, message = "Heslo musí obsahovat nejméně 6 znaků!")
 	private String confirmPasswd;
-
-	@AssertTrue(message = "Hesla se musí shodovat!")
-	private boolean isValid() {
-		return this.passwd.equals(this.confirmPasswd);
-	}
-
-	private boolean enabled;
 
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles;
+
+	private boolean enabled;
 
 	public User() {
 	}
@@ -109,6 +103,11 @@ public class User {
 
 	public void setConfirmPasswd(String confirmPasswd) {
 		this.confirmPasswd = confirmPasswd;
+	}
+
+	@AssertTrue(message = "Hesla se musí shodovat!")
+	public boolean isValid() {
+		return this.passwd.equals(this.confirmPasswd);
 	}
 
 	public boolean isEnabled() {
