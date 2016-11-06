@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -13,6 +15,8 @@ import cz.sizi.bikeo.model.Role;
 
 @Repository
 public class RoleDaoImpl implements RoleDao {
+
+	private static final Logger logger = LoggerFactory.getLogger(RoleDaoImpl.class);
 
 	private SessionFactory sessionFactory;
 
@@ -30,17 +34,20 @@ public class RoleDaoImpl implements RoleDao {
 	@Override
 	public void save(Role role) {
 		sessionFactory.getCurrentSession().save(role);
+		logger.info("Role saved successfully, Role detail: " + role.getName() + role.getId());
 	}
 
 	@Override
 	public Role update(Role role) {
 		sessionFactory.getCurrentSession().update(role);
+		logger.info("Role updated successfully, Role detail: " + role.getName() + role.getId());
 		return role;
 	}
 
 	@Override
 	public void remove(Role role) {
 		sessionFactory.getCurrentSession().delete(role);
+		logger.info("Role deleted successfully, Role detail: " + role.getName() + role.getId());
 	}
 
 	@Override
@@ -53,6 +60,7 @@ public class RoleDaoImpl implements RoleDao {
 		Query query = sessionFactory.getCurrentSession().createQuery("from Role where name = :roleName");
 		query.setParameter("roleName", roleName);
 		Role role = (Role) query.uniqueResult();
+		logger.info("Role loaded successfully, Role detail: " + role.getName() + role.getId());
 		return role;
 
 	}

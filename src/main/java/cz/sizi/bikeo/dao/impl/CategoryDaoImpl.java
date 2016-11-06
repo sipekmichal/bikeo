@@ -15,8 +15,7 @@ import cz.sizi.bikeo.model.Category;
 @Repository
 public class CategoryDaoImpl implements CategoryDao {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(CategoryDaoImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(CategoryDaoImpl.class);
 
 	private SessionFactory sessionFactory;
 
@@ -28,36 +27,32 @@ public class CategoryDaoImpl implements CategoryDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Category> findAll() {
-		return sessionFactory.getCurrentSession().createQuery("from Category")
-				.list();
+		return sessionFactory.getCurrentSession().createQuery("from Category").list();
 	}
 
 	@Override
 	public void save(Category category) {
 		sessionFactory.getCurrentSession().save(category);
-		logger.info("Category saved successfully, Category Details=" + category);
+		logger.info("Category saved successfully, Category detail: " + category.getName() + category.getId());
 	}
 
 	@Override
 	public Category update(Category category) {
 		sessionFactory.getCurrentSession().update(category);
-		logger.info("Category updated successfully, Category Details="
-				+ category);
+		logger.info("Category updated successfully, Category detail: " + category.getName() + category.getId());
 		return category;
 	}
 
 	@Override
 	public void remove(Category category) {
 		sessionFactory.getCurrentSession().delete(category);
-		logger.info("Category deleted successfully, Category Details="
-				+ category);
+		logger.info("Category deleted successfully, Category detail: " + category.getName() + category.getId());
 	}
 
 	@Override
 	public Category findById(Long id) {
-		Category category = (Category) sessionFactory.getCurrentSession().get(
-				Category.class, (Serializable) id);
-		logger.info("Category loaded successfully, Category Details=" + category);
+		Category category = (Category) sessionFactory.getCurrentSession().get(Category.class, (Serializable) id);
+		logger.info("Category loaded successfully, Category detail: " + category.getName() + id);
 		return category;
 	}
 
