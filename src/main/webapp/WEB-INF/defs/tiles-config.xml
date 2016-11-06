@@ -3,7 +3,7 @@
        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
-	
+
 	<!-- Main template for public pages -->
 	<definition name="mainDefinition" template="/WEB-INF/layouts/main.jsp">
 		<put-attribute name="pageTitle" value="bikeo.cz" />
@@ -16,12 +16,12 @@
 	<definition name="adminDefinition" template="/WEB-INF/layouts/admin.jsp">
 		<put-attribute name="adminNavbar" value="/WEB-INF/layouts/adminNavbar.jsp" />
 	</definition>
-	
+
 	<definition name="registration" extends="mainDefinition">
 		<put-attribute name="pageTitle" value="bikeo.cz - Registrace" />
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/registration.jsp" />
 	</definition>
-	
+
 	<!-- Index page layout extends template for public pages -->
 	<definition name="index" extends="mainDefinition">
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/index.jsp" />
@@ -34,11 +34,21 @@
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/dashboard.jsp" />
 		<put-attribute name="current" value="dashboard" />
 	</definition>
-	
-	<definition name="registrationSuccess" extends="index">
-		<put-attribute name="bodyContent" value="/WEB-INF/jsp/registrationSuccess.jsp" />
-	</definition>
-	
-	
 
+	<definition name="videos" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Videa" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/videos.jsp" />
+		<put-attribute name="current" value="videos" />
+	</definition>
+
+	<definition name="video-detail" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Detail videa" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/video-detail.jsp" />
+		<put-attribute name="current" value="videos" />
+	</definition>
+
+	<definition name="registrationSuccess" extends="index">
+		<put-attribute name="bodyContent"
+			value="/WEB-INF/jsp/registrationSuccess.jsp" />
+	</definition>
 </tiles-definitions>

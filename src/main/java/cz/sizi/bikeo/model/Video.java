@@ -29,6 +29,9 @@ public class Video {
 	@GeneratedValue
 	private Long id;
 
+	//YouTube ID
+	private String yid;
+	
 	private String url;
 
 	@Size(min = 3, max = 250)
@@ -54,6 +57,7 @@ public class Video {
 	private MultipartFile imageMultipart;
 
 	@Lob
+	@Transient
 	private Blob image;
 
 	/**
@@ -138,4 +142,13 @@ public class Video {
 	public void setImageBlob(Blob image) {
 		this.image = image;
 	}
+
+	public String getYid() {
+		return yid;
+	}
+
+	public void setYid(String yid) {
+		this.yid = yid;
+	}
+	
 }

@@ -32,18 +32,18 @@
 				<a href='<spring:url value="/admin/dashboard.html"></spring:url>'
 					class="list-group-item ${current == 'dashboard'?'active':'' }"><span
 					class="glyphicon glyphicon-dashboard"></span> Rychlý přehled</a> <a
-					href='<spring:url value=""></spring:url>'
-					class="list-group-item ${current == 'articles'?'active':'' }"><span
+					href='<spring:url value="/admin/videa.html"></spring:url>'
+					class="list-group-item ${current == 'videos'?'active':'' }"><span
 					class="glyphicon glyphicon-file"></span> Videa</a> <a
-					href='<spring:url value=""></spring:url>'
+					href='<spring:url value="/admin/kategorie.html"></spring:url>'
 					class="list-group-item ${current == 'categories'?'active':'' }"><span
 					class="glyphicon glyphicon-th-list"></span> Kategorie</a>
 				<security:authorize access="hasRole('ROLE_ADMIN')">
-					<a href='<spring:url value=""></spring:url>'
+					<a href='<spring:url value="/admin/uzivatele.html"></spring:url>'
 						class="list-group-item ${current == 'users'?'active':'' }"><span
 						class="glyphicon glyphicon-user"></span> Uživatelé</a>
 				</security:authorize>
-				<a href='<spring:url value=""></spring:url>'
+				<a href='<spring:url value="/admin/nastaveni.html"></spring:url>'
 					class="list-group-item ${current == 'settings'?'active':'' }"><span
 					class="glyphicon glyphicon-cog"></span> Nastavení</a>
 			</div>

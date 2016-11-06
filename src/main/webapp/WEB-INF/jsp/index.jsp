@@ -6,8 +6,9 @@
 	<c:forEach items="${videos}" var="video">
 		<li class="span3">
 			<div class="thumbnail">
-				<span>.</span> <img
-					src="${pageContext.request.contextPath}/image/${video.id}.png"
+				<img
+					<%-- 					src="${pageContext.request.contextPath}/image/${video.id}.png" --%>
+						src="http://i.ytimg.com/vi/${video.yid}/hqdefault.jpg"
 					alt="${video.title}">
 
 				<div class="caption">
