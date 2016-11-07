@@ -4,11 +4,11 @@
 
 <ul class="nav nav-list">
 	<li class="nav-header">Kategorie</li>
-	<li><a href="#">Cross Country</a></li>
-	<li><a href="#">Downhill</a></li>
-	<li><a href="#">Road cycling</a></li>
-	<li><a href="#">Freestyle</a></li>
-	<li><a href="#">BMX</a></li>
+	<li><a href="/bikeo/category?id=1">Cross Country</a></li>
+	<li><a href="/bikeo/category?id=2">Downhill</a></li>
+	<li><a href="/bikeo/category?id=3">Road cycling</a></li>
+	<li><a href="/bikeo/category?id=4">Freestyle</a></li>
+	<li><a href="/bikeo/category?id=5">BMX</a></li>
 	<li class="divider"></li>
 </ul>
 

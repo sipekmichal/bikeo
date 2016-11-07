@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.sizi.bikeo.service.VideoService;
 
@@ -33,5 +34,12 @@ public class IndexController {
 		model.addAttribute("videos", videoService.findAll());
 		return "index";
 	}
-
+	
+	// Zkousel jsem Long i long id, ale vzdy to nadava na pretypovani. Nepise mi to ani kde se ta chyba s pretypovanim vyskytuje :(
+	@RequestMapping(params={"id"}, value = "/category", method = RequestMethod.GET)
+	public String showByCategory(Model model, @RequestParam("id") long id) {
+		model.addAttribute("videos", videoService.findByCategory(id));
+		return "index";
+	}
+	
 }

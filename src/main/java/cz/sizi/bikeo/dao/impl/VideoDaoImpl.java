@@ -84,5 +84,17 @@ public class VideoDaoImpl implements VideoDao {
 		return (Video) sessionFactory.getCurrentSession().createQuery("from Video where title='" + title + "'")
 				.uniqueResult();
 	}
+	
+  	@Override
+	public List<Video> findByCategory(long category) {
+		Query query = sessionFactory
+				.getCurrentSession()
+				.createQuery(
+						"from Video vid inner join vid.categories cat where cat.id = :category");
+		query.setParameter("category", category);
+		@SuppressWarnings("unchecked")
+		List<Video> videos = query.list();
+		return videos;
+	}
 
 }

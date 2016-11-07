@@ -3,7 +3,7 @@
 <%@ include file="../layouts/taglibs.jsp"%>	
 
 <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"><span class="icon-bar"></span><span class="icon-bar"></span> <span class="icon-bar"></span></a>
-<a class="brand" href="#">bikeo.cz</a>
+<a class="brand" href="/bikeo">bikeo.cz</a>
 <form role="form" action='<spring:url value="j_spring_security_check"></spring:url>' method="POST">
 	<div class="nav-collapse collapse">
 		<ul class="nav">

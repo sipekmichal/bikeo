@@ -56,5 +56,9 @@ public class VideoServiceImpl implements VideoService {
 	public Video findByTitle(String title) {
 		return videoDao.findByTitle(title);
 	}
-
+	
+	@Override
+	public List<Video> findByCategory(long category) {
+		return videoDao.findByCategory(category);
+	}
 }
