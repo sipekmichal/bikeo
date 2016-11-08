@@ -3,7 +3,7 @@
 <%@ include file="../layouts/taglibs.jsp"%>
 
 <ul class="thumbnails">
-	<c:forEach items="${videos}" var="video">
+	<c:forEach items="${category.videos}" var="video">
 		<li class="span3">
 			<div class="thumbnail">
 				<img src="http://i.ytimg.com/vi/${video.yid}/hqdefault.jpg"

@@ -28,6 +28,11 @@
 		<put-attribute name="pageTitle" value="bikeo.cz" />
 	</definition>
 
+	<definition name="indexFilteredByCat" extends="mainDefinition">
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/indexFilteredByCat.jsp" />
+		<put-attribute name="pageTitle" value="bikeo.cz" />
+	</definition>
+
 	<!-- Dashboard page layout extends template for admin pages -->
 	<definition name="dashboard" extends="adminDefinition">
 		<put-attribute name="pageTitle" value="bikeo.cz - Přehled" />
