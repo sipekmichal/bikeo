@@ -162,8 +162,8 @@ public class VideoController {
 				new PropertyEditorSupport() {
 					@Override
 					public void setAsText(String text) {
-						Category c = categoryService.findById(Long
-								.parseLong(text));
+						Category c = categoryService.findById(Integer
+								.parseInt(text));
 						setValue(c);
 					}
 				});

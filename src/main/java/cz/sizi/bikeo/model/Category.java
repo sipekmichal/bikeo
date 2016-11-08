@@ -16,7 +16,7 @@ public class Category {
 	 * */
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int id;
 
 	@Size(min = 3, max = 20, message = "Název musí obsahovat 3-20 znaků!")
 	private String name;
@@ -27,11 +27,11 @@ public class Category {
 	/**
 	 * Getters and setters
 	 * */
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

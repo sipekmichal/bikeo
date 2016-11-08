@@ -51,7 +51,7 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	@Override
-	public Role findById(Long id) {
+	public Role findById(Integer id) {
 		return (Role) sessionFactory.getCurrentSession().get(Role.class, (Serializable) id);
 	}
 

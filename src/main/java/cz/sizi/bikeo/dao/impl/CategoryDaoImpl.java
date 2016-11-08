@@ -50,7 +50,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public Category findById(Long id) {
+	public Category findById(Integer id) {
 		Category category = (Category) sessionFactory.getCurrentSession().get(Category.class, (Serializable) id);
 		logger.info("Category loaded successfully, Category detail: " + category.getName() + id);
 		return category;

@@ -27,7 +27,7 @@ public class Video {
 	 * */
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int id;
 
 	//YouTube ID
 	private String yid;
@@ -63,11 +63,11 @@ public class Video {
 	/**
 	 * Getters and setters
 	 * */
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

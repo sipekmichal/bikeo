@@ -8,5 +8,5 @@ import cz.sizi.bikeo.model.Video;
 public interface VideoService extends VideoDao {
 
 	Video findByTitle(String title);
-	List<Video> findByCategory(long category);
+	List<Video> findByCategory(Integer category);
 }

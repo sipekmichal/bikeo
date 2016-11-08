@@ -37,9 +37,9 @@ public class AdminController {
 	 * Method for display videos's detail
 	 * */
 	@RequestMapping("/admin/video")
-	public String articleDetail(Model model, @RequestParam("id") Integer id) {
+	public String showVideoDetail(Model model, @RequestParam("id") Integer id) {
 		model.addAttribute("videos", videoService.findAll());
-		model.addAttribute("video", videoService.findById(id.longValue()));
+		model.addAttribute("video", videoService.findById(id));
 		model.addAttribute("categories", categoryService.findAll());
 		return "video-detail";
 	}	

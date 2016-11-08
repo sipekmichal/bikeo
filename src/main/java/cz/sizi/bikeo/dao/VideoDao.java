@@ -11,5 +11,5 @@ public interface VideoDao extends GenericDao<Video, Integer> {
 	
 	Video findByTitle(String tile);
 
-	List<Video> findByCategory(long category);
+	List<Video> findByCategory(Integer category);
 }

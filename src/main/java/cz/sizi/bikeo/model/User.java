@@ -22,7 +22,7 @@ public class User {
 	 */
 	@Id
 	@GeneratedValue
-	private Long id;
+	private int id;
 
 	@Size(min = 3, max = 20, message = "Jméno musí obsahovat 3-20 znaků!")
 	private String name;
@@ -65,11 +65,11 @@ public class User {
 	/**
 	 * Getters and setters
 	 */
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

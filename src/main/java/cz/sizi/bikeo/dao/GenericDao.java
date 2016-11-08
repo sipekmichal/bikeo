@@ -11,5 +11,5 @@ public interface GenericDao<T, PK> {
 
 	void remove(T t);
 
-	T findById(Long l);
+	T findById(PK p);
 }

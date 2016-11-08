@@ -47,7 +47,7 @@ public class VideoDaoImpl implements VideoDao {
 	}
 
 	@Override
-	public Video findById(Long id) {
+	public Video findById(Integer id) {
 		return (Video) sessionFactory.getCurrentSession().get(Video.class, (Serializable) id);
 	}
 
@@ -86,7 +86,7 @@ public class VideoDaoImpl implements VideoDao {
 	}
 	
   	@Override
-	public List<Video> findByCategory(long category) {
+	public List<Video> findByCategory(Integer category) {
 		Query query = sessionFactory
 				.getCurrentSession()
 				.createQuery(

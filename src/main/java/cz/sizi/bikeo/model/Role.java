@@ -18,7 +18,7 @@ public class Role {
 	 * */
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+	private int id;
 	
 	@Size(min = 3, max = 60)
 	private String name;
@@ -30,11 +30,11 @@ public class Role {
 	/**
 	 * Getters and setters
 	 * */
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
