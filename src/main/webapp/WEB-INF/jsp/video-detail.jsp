@@ -32,7 +32,7 @@
 	<input type="submit" formaction="" value="Uložit"
 		class="btn btn-success btn-lg btn-block">
 	<button type="button"
-		onclick="location.href='<spring:url value="/admin/videa/odstranit?id=${video.id}"></spring:url>'"
+		onclick="location.href='<spring:url value="/admin/video/odstranit?id=${video.id}"></spring:url>'"
 		class="btn btn-default btn-lg btn-block">Odstranit</button>
 </div>
 

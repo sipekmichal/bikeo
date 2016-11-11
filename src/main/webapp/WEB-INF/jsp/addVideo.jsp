@@ -48,16 +48,6 @@
 			<form:errors path="user.id" />
 		</div>
 	</div>
-
-<!-- 
-	<div class="form-group">
-		<label for="user" class="col-sm-2 control-label">Obrázek</label>
-		<div class="col-sm-10">
-			<form:input type="file" name="image" id="image" path="image"/>
-			<form:errors path="image" />
-		</div>
-	</div>
- -->
 	<div class="form-group">
 		<div class="col-sm-2">
 			<input type="submit" value="Nahrát" class="btn btn-primary">

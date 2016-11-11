@@ -1,6 +1,5 @@
 package cz.sizi.bikeo.model;
 
-import java.sql.Blob;
 import java.util.Date;
 import java.util.List;
 
@@ -10,14 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Video {
@@ -42,7 +38,7 @@ public class Video {
 
 	private Date publishDate;
 
-	private int enabled;
+	private boolean enabled;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "user_id")
@@ -52,13 +48,6 @@ public class Video {
 	@ManyToMany(cascade = CascadeType.REMOVE)
 	@JoinTable(name = "video_category", joinColumns = { @JoinColumn(name = "video_id") }, inverseJoinColumns = { @JoinColumn(name = "category_id") })
 	private List<Category> categories;
-	
-	@Transient
-	private MultipartFile imageMultipart;
-
-	@Lob
-	@Transient
-	private Blob image;
 
 	/**
 	 * Getters and setters
@@ -119,28 +108,12 @@ public class Video {
 		this.url = url;
 	}
 
-	public int getEnabled() {
+	public boolean getEnabled() {
 		return enabled;
 	}
 
-	public void setEnabled(int enabled) {
+	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
-	}
-
-	public MultipartFile getMultipartImage() {
-		return imageMultipart;
-	}
-
-	public void setImage(MultipartFile image) {
-		this.imageMultipart = image;
-	}
-	
-	public Blob getImage() {
-		return image;
-	}
-
-	public void setImageBlob(Blob image) {
-		this.image = image;
 	}
 
 	public String getYid() {
