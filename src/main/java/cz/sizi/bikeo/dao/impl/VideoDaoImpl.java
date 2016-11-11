@@ -40,9 +40,11 @@ public class VideoDaoImpl implements VideoDao {
 	}
 
 	@Override
-	public void remove(Video video) {
-		sessionFactory.getCurrentSession().delete(video);
-		logger.info("Video deleted successfully, Video detail: " + video.getId() + video.getUrl() + video.getTitle()
+	public void disable(Video video) {
+		Query query = sessionFactory.getCurrentSession().createQuery("update Video set enabled = 0 where id = :id");
+		query.setParameter("id", video.getId());
+		query.executeUpdate();
+		logger.info("Video disabled successfully, Video detail: " + video.getId() + video.getUrl() + video.getTitle()
 				+ video.getEnabled());
 	}
 

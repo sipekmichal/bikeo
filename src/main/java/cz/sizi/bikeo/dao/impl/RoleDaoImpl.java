@@ -45,9 +45,11 @@ public class RoleDaoImpl implements RoleDao {
 	}
 
 	@Override
-	public void remove(Role role) {
-		sessionFactory.getCurrentSession().delete(role);
-		logger.info("Role deleted successfully, Role detail: " + role.getName() + role.getId());
+	public void disable(Role role) {
+		Query query = sessionFactory.getCurrentSession().createQuery("update Role set enabled = 0 where id = :id");
+		query.setParameter("id", role.getId());
+		query.executeUpdate();
+		logger.info("Role disabled successfully, Role detail: " + role.getName() + role.getId());
 	}
 
 	@Override

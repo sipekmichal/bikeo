@@ -20,6 +20,8 @@ public class Category {
 
 	@Size(min = 3, max = 20, message = "Název musí obsahovat 3-20 znaků!")
 	private String name;
+	
+	private boolean enabled;
 
 	@ManyToMany(mappedBy = "categories")
 	private List<Video> videos;
@@ -49,6 +51,14 @@ public class Category {
 
 	public void setVideos(List<Video> videos) {
 		this.videos = videos;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }

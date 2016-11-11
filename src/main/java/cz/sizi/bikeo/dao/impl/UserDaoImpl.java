@@ -54,9 +54,11 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public void remove(User user) {
-		sessionFactory.getCurrentSession().delete(user);
-		logger.info("User deleted successfully, User detail: " + user.getName() + user.getEmail() + user.getId());
+	public void disable(User user) {
+		Query query = sessionFactory.getCurrentSession().createQuery("update User set enabled = 0 where id = :id");
+		query.setParameter("id", user.getId());
+		query.executeUpdate();
+		logger.info("User disabled successfully, User detail: " + user.getName() + user.getEmail() + user.getId());
 	}
 
 	@Override
@@ -66,11 +68,5 @@ public class UserDaoImpl implements UserDao {
 		User user = (User) query.uniqueResult();
 		logger.info("User loaded successfully, User detail: " + user.getName() + user.getEmail() + user.getId());
 		return user;
-	}
-
-	@Override
-	public void disable(User user) {
-		// TODO
-		logger.info("User disabled successfully, User detail: " + user.getName() + user.getEmail() + user.getId());
 	}
 }

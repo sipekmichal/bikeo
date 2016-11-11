@@ -11,7 +11,7 @@
 	</ol>
 	<div class="row">
 		<c:forEach items="${videos}" var="video">
-			<c:if test="${video.enabled == 1}">
+			<c:if test="${video.enabled == true}">
 				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-body">

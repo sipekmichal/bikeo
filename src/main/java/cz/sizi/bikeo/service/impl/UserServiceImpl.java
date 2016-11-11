@@ -40,12 +40,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void remove(User user) {
-		user = userDao.findById(user.getId());
-		userDao.remove(user);
-	}
-
-	@Override
 	public void disable(User user) {
 		userDao.disable(user);
 	}

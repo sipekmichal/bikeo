@@ -22,6 +22,8 @@ public class Role {
 	
 	@Size(min = 3, max = 60)
 	private String name;
+	
+	private boolean enabled;
 
 	@NotEmpty
 	@ManyToMany(mappedBy = "roles")
@@ -52,6 +54,14 @@ public class Role {
 
 	public void setUsers(Set<User> users) {
 		this.users = users;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }

@@ -33,8 +33,8 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public void remove(Category category) {
-		categoryDao.remove(category);
+	public void disable(Category category) {
+		categoryDao.disable(category);
 	}
 
 	@Override

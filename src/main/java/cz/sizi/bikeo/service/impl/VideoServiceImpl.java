@@ -43,8 +43,8 @@ public class VideoServiceImpl implements VideoService {
 	}
 
 	@Override
-	public void remove(Video video) {
-		videoDao.remove(video);
+	public void disable(Video video) {
+		videoDao.disable(video);
 	}
 
 	@Override

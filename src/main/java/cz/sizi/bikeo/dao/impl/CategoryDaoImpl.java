@@ -3,6 +3,7 @@ package cz.sizi.bikeo.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -44,9 +45,11 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	@Override
-	public void remove(Category category) {
-		sessionFactory.getCurrentSession().delete(category);
-		logger.info("Category deleted successfully, Category detail: " + category.getName() + category.getId());
+	public void disable(Category category) {
+		Query query = sessionFactory.getCurrentSession().createQuery("update Category set enabled = 0 where id = :id");
+		query.setParameter("id", category.getId());
+		query.executeUpdate();
+		logger.info("Category disabled successfully, Category detail: " + category.getName() + category.getId());
 	}
 
 	@Override
