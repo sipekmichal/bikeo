@@ -47,7 +47,7 @@ public class VideoController {
 
 	/**
 	 * Method displays page with all videos
-	 * */
+	 */
 	@RequestMapping("/videa")
 	public String showAllVideos(Model model) {
 		model.addAttribute("videos", videoService.findAll());
@@ -56,7 +56,7 @@ public class VideoController {
 
 	/**
 	 * Method for display video's add page (addVideo.jsp)
-	 * */
+	 */
 	@RequestMapping("/videa/pridat")
 	public String showVideoAddPage(Model model) {
 		model.addAttribute("users", userService.findAll());
@@ -66,35 +66,23 @@ public class VideoController {
 
 	/**
 	 * Method for save a video
-	 * */
+	 */
 	@RequestMapping(value = "/videa/pridat", method = RequestMethod.POST)
-	public String saveVideo(Model model,
-			//@RequestParam("image") MultipartFile file,
-			@ModelAttribute("video") Video video, BindingResult result) {
-		
-		//pokud dojde k chybe pri bindovani na formulari
+	public String saveVideo(Model model, @ModelAttribute("video") Video video, BindingResult result) {
+
+		// pokud dojde k chybe pri bindovani na formulari
 		if (result.hasErrors()) {
 			logger.error("Binding error: " + result);
 			return showVideoAddPage(model);
 		}
 
-//		try {
-//			Blob blob = Hibernate.createBlob(file.getInputStream());
-//			video.setImageBlob(blob);
-//			logger.info("Image loaded, it's available at: " + "/image/"
-//					+ video.getId() + ".png");
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-
 		try {
 			Date publishDate = new Date();
 			video.setPublishDate(publishDate);
-			video.setEnabled(0);
-			//Set YouTube ID at first, then URL
-			// TODO: predelat metodu setYid - takhle to neni idealne resene, ale funguje
-			video.setYid(processYoutubeId(video));
-			video.setUrl(processUrl(video));
+			// video is disabled by default
+			video.setEnabled(false);
+			video.setYid(getYoutubeVideoId(video));
+			video.setUrl(getValidUrl(video));
 			videoService.save(video);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -103,70 +91,50 @@ public class VideoController {
 		return "redirect:/index.html?success=true";
 	}
 
-//	@RequestMapping("/image/{videoId}.png")
-//	public String accessTheVideoImage(Model model,
-//			@PathVariable("videoId") Long id, HttpServletResponse response) {
-//		Video video = videoService.findById(id);
-//		logger.debug("Video " + video.getId() + " found.");
-//		try {
-//			OutputStream out = response.getOutputStream();
-//			IOUtils.copy(video.getImage().getBinaryStream(), out);
-//			out.flush();
-//			out.close();
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return null;
-//	}
-
 	/**
 	 * Method for processing youtube video link. Workaround the same-origin
 	 * security policy on iframes.
-	 * */
-	public String processUrl(Video video) {
-		String url = video.getUrl();
-		String[] tokens = url.split("be/|v=|&|\\?list");
-		url = "https://www.youtube.com/v/" + tokens[1];
+	 */
+	public String getValidUrl(Video video) {
+		String url = "https://www.youtube.com/v/" + getYoutubeVideoId(video);
 		return url;
 	}
-	
-	public String processYoutubeId(Video video) {
-		String yId = video.getUrl();
-		String[] tokens = yId.split("be/|v=|&|\\?list");
-		logger.info(tokens[1]);
+
+	/**
+	 * Method for getting YouTube video Id as String
+	 * 
+	 * FOR EXAMPLE: When you enter url:
+	 * https://www.youtube.com/watch?v=Hl-zzrqQoSE&list=PLFE2CE09D83EE3E28 then
+	 * this method returns Hl-zzrqQoSE
+	 */
+	public String getYoutubeVideoId(Video video) {
+		String url = video.getUrl();
+		String[] tokens = url.split("be/|v=|&|\\?list");
 		return tokens[1];
 	}
 
 	/**
 	 * Binder for required date format
-	 * */
+	 */
 	@InitBinder
 	public void setDateFormat(WebDataBinder webDataBinder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 		dateFormat.setLenient(false);
-		webDataBinder.registerCustomEditor(Date.class, "publishDate",
-				new CustomDateEditor(dateFormat, false));
+		webDataBinder.registerCustomEditor(Date.class, "publishDate", new CustomDateEditor(dateFormat, false));
 	}
 
 	/**
 	 * Binder for resolving type mismatch and bind exceptions in POST
-	 * */
+	 */
 	@InitBinder
-	protected void setCategoryAsString(HttpServletRequest request,
-			ServletRequestDataBinder binder) throws Exception {
-		binder.registerCustomEditor(Category.class, "categories",
-				new PropertyEditorSupport() {
-					@Override
-					public void setAsText(String text) {
-						Category c = categoryService.findById(Integer
-								.parseInt(text));
-						setValue(c);
-					}
-				});
+	protected void setCategoryAsString(HttpServletRequest request, ServletRequestDataBinder binder) throws Exception {
+		binder.registerCustomEditor(Category.class, "categories", new PropertyEditorSupport() {
+			@Override
+			public void setAsText(String text) {
+				Category c = categoryService.findById(Integer.parseInt(text));
+				setValue(c);
+			}
+		});
 	}
 
 }
