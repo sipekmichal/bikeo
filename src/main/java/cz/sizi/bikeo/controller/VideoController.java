@@ -50,8 +50,8 @@ public class VideoController {
 	 * Method displays page with all videos
 	 */
 	@RequestMapping("/videa")
-	public String showAllVideos(Model model) {
-		model.addAttribute("videos", videoService.findAll());
+	public String showAllEnabledVideos(Model model) {
+		model.addAttribute("videos", videoService.findEnabledAll());
 		return "index";
 	}
 
@@ -80,8 +80,9 @@ public class VideoController {
 		try {
 			Date publishDate = new Date();
 			video.setPublishDate(publishDate);
-			// video is disabled by default
+			// video is disabled and confirmed by default
 			video.setEnabled(false);
+			video.setConfirmed(false);
 			video.setYid(getYoutubeVideoId(video));
 			video.setUrl(getValidUrl(video));
 			videoService.save(video);

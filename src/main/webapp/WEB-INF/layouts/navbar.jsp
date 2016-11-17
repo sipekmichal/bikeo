@@ -45,7 +45,7 @@
 							<security:authorize ifAnyGranted="ROLE_ADMIN">
 								<li><a href="/bikeo/admin">Administrace</a></li>
 							</security:authorize>
-							<li><a href="#">Přidat video</a></li>
+							<li><a href="/bikeo/videa/pridat">Přidat video</a></li>
 							<li><a href="#">Můj profil</a></li>
 							<li class="divider"></li>
 							<li><a href='<spring:url value="/logout"></spring:url>'>Odhlásit

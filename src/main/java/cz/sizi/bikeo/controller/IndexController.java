@@ -28,7 +28,7 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showIndex(Model model) {
-		model.addAttribute("videos", videoService.findAll());
+		model.addAttribute("videos", videoService.findEnabledAll());
 		return "index";
 	}
 
@@ -37,7 +37,7 @@ public class IndexController {
 	 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String showIndex2(Model model) {
-		model.addAttribute("videos", videoService.findAll());
+		model.addAttribute("videos", videoService.findEnabledAll());
 		return "index";
 	}
 
@@ -48,7 +48,7 @@ public class IndexController {
 	public String showVideosByCategory(Model model, @RequestParam("id") Integer id) {
 		model.addAttribute("categories", categoryService.findAll());
 		model.addAttribute("category", categoryService.findById(id));
-		model.addAttribute("videos", videoService.findAll());
+		model.addAttribute("videos", videoService.findEnabledAll());
 		return "indexFilteredByCat";
 	}
 

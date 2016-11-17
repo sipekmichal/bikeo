@@ -28,7 +28,12 @@ public class VideoDaoImpl implements VideoDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Video> findAll() {
-		return sessionFactory.getCurrentSession().createQuery("from Video order by publishDate desc").list();
+		return sessionFactory.getCurrentSession().createQuery("from Video").list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Video> findAllGroupedByPublishDateDesc() {
+		return sessionFactory.getCurrentSession().createQuery("from Video order by publishDate DESC").list();
 	}
 
 	@Override
@@ -63,7 +68,7 @@ public class VideoDaoImpl implements VideoDao {
 	@Override
 	public List<Video> findByDate(String date) {
 		Query query = sessionFactory.getCurrentSession()
-				.createQuery("from Video where publishDate like ':date%' order by publishDate ASC");
+				.createQuery("from Video where publishDate like ':date%'");
 		query.setParameter("date", date);
 		@SuppressWarnings("unchecked")
 		List<Video> videos = query.list();
