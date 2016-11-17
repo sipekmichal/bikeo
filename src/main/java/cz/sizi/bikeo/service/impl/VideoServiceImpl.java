@@ -61,4 +61,30 @@ public class VideoServiceImpl implements VideoService {
 	public List<Video> findByCategory(Integer category) {
 		return videoDao.findByCategory(category);
 	}
+
+	@Override
+	public int getCount() {
+		return videoDao.getCount();
+	}
+
+	@Override
+	public int getEnabledCount(Integer count) {
+		return videoDao.getEnabledCount(count);
+	}
+
+	@Override
+	public int getDisabledCount(Integer count) {
+		return videoDao.getDisabledCount(count);
+	}
+
+	@Override
+	public int getUnconfirmedCount(Integer count) {
+		return videoDao.getUnconfirmedCount(count);
+	}
+
+	@Override
+	public List<Video> findEnabledAll() {
+		return videoDao.findEnabledAll();
+	}
+	
 }

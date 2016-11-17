@@ -12,4 +12,11 @@ public interface VideoDao extends GenericDao<Video, Integer> {
 	Video findByTitle(String tile);
 
 	List<Video> findByCategory(Integer category);
+	
+	int getEnabledCount(Integer count);
+	
+	int getDisabledCount(Integer count);
+	
+	int getUnconfirmedCount(Integer count);
+
 }

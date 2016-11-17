@@ -39,6 +39,8 @@ public class Video {
 	private Date publishDate;
 
 	private boolean enabled;
+	
+	private boolean confirmed;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "user_id")
@@ -122,6 +124,14 @@ public class Video {
 
 	public void setYid(String yid) {
 		this.yid = yid;
+	}
+
+	public boolean isConfirmed() {
+		return confirmed;
+	}
+
+	public void setConfirmed(boolean confirmed) {
+		this.confirmed = confirmed;
 	}
 	
 }

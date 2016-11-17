@@ -28,8 +28,7 @@ public class VideoDaoImpl implements VideoDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Video> findAll() {
-		return sessionFactory.getCurrentSession().createQuery("from Video where enabled=1 order by publishDate desc")
-				.list();
+		return sessionFactory.getCurrentSession().createQuery("from Video order by publishDate desc").list();
 	}
 
 	@Override
@@ -86,17 +85,45 @@ public class VideoDaoImpl implements VideoDao {
 		return (Video) sessionFactory.getCurrentSession().createQuery("from Video where title='" + title + "'")
 				.uniqueResult();
 	}
-	
-  	@Override
+
+	@Override
 	public List<Video> findByCategory(Integer category) {
-		Query query = sessionFactory
-				.getCurrentSession()
-				.createQuery(
-						"from Video vid inner join vid.categories cat where cat.id = :category");
+		Query query = sessionFactory.getCurrentSession()
+				.createQuery("from Video vid inner join vid.categories cat where cat.id = :category");
 		query.setParameter("category", category);
 		@SuppressWarnings("unchecked")
 		List<Video> videos = query.list();
 		return videos;
+	}
+
+	@Override
+	public int getCount() {
+		return sessionFactory.getCurrentSession().createQuery("from Video").list().size();
+
+	}
+
+	@Override
+	public int getEnabledCount(Integer count) {
+		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 1").list().size();
+
+	}
+	
+	@Override
+	public int getDisabledCount(Integer count) {
+		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 0").list().size();
+
+	}
+	
+	@Override
+	public int getUnconfirmedCount(Integer count) {
+		return sessionFactory.getCurrentSession().createQuery("from Video where confirmed = 0").list().size();
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Video> findEnabledAll() {
+		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 1").list();
 	}
 
 }
