@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="../layouts/taglibs.jsp"%>
+
 <h1>${video.title}</h1>
 <br>
-<p>${video.content}</p>
 <center>
-	<iframe width="854px" height="480px" allowfullscreen="allowfullscreen"
+	<iframe width="870px" height="490px" allowfullscreen="allowfullscreen"
 		mozallowfullscreen="mozallowfullscreen"
 		msallowfullscreen="msallowfullscreen"
 		oallowfullscreen="oallowfullscreen"
@@ -13,4 +13,5 @@
 		src="https://www.youtube.com/embed/${video.yid}">
 	</iframe>
 </center>
-</html>
+<p>${video.content}</p>
+<div>Zveřejněno: <b>${fn:substring(video.publishDate, 0, 10)}</b></div>
