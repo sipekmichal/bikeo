@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import cz.sizi.bikeo.model.Category;
 import cz.sizi.bikeo.model.Video;
@@ -89,6 +90,12 @@ public class VideoController {
 		}
 
 		return "redirect:/index.html?success=true";
+	}
+	
+	@RequestMapping("/watch")
+	public String watchVideo(Model model, @RequestParam("v") Integer id) {
+		model.addAttribute("video", videoService.findById(id));
+		return "videoWatch";
 	}
 
 	/**
