@@ -47,8 +47,8 @@ public class IndexController {
 	@RequestMapping(value = "/kategorie")
 	public String showVideosByCategory(Model model, @RequestParam("id") Integer id) {
 		model.addAttribute("categories", categoryService.findAll());
-		model.addAttribute("videos", videoService.findAll());
 		model.addAttribute("category", categoryService.findById(id));
+		model.addAttribute("videos", videoService.findAll());
 		return "indexFilteredByCat";
 	}
 
