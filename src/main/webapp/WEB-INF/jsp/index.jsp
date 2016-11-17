@@ -6,12 +6,14 @@
 	<c:forEach items="${videos}" var="video">
 		<li class="span3">
 			<div class="thumbnail">
-				<img src="http://i.ytimg.com/vi/${video.yid}/hqdefault.jpg"
-					alt="${video.title}">
-
-				<div class="caption">
-					<h3>${video.title}</h3>
-				</div>
+				<a href="/bikeo/watch?v=${video.id}">
+					<img src="http://i.ytimg.com/vi/${video.yid}/hqdefault.jpg"
+						alt="${video.title}">
+	
+					<div class="caption">
+						<h3>${video.title}</h3>
+					</div>
+				</a>
 			</div>
 		</li>
 	</c:forEach>

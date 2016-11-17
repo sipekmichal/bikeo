@@ -56,4 +56,9 @@
 		<put-attribute name="bodyContent"
 			value="/WEB-INF/jsp/registrationSuccess.jsp" />
 	</definition>
+	
+	<definition name="videoWatch" extends="mainDefinition">
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/videoWatch.jsp" />
+		<put-attribute name="pageTitle" value="bikeo.cz" />
+	</definition>
 </tiles-definitions>
