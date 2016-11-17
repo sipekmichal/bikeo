@@ -10,4 +10,9 @@ public class LoginController {
 	public String showLoginPage(){	
 		return "login";
 	}
+	
+	@RequestMapping(value = "/loginfailed")
+	public String showLoginFailedPage(){	
+		return "loginfailed";
+	}
 }
