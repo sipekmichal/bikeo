@@ -42,4 +42,14 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.findById(id);
 	}
 
+	@Override
+	public int getCount() {
+		return categoryDao.getCount();
+	}
+
+	@Override
+	public List<Category> findEnabledAll() {
+		return categoryDao.findEnabledAll();
+	}
+
 }

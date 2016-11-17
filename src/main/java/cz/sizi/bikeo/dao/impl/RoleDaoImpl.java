@@ -67,4 +67,15 @@ public class RoleDaoImpl implements RoleDao {
 
 	}
 
+	@Override
+	public int getCount() {
+		return sessionFactory.getCurrentSession().createQuery("from Role").list().size();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Role> findEnabledAll() {
+		return sessionFactory.getCurrentSession().createQuery("from Role where enabled = 1").list();
+	}
+
 }

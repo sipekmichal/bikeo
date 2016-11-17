@@ -69,4 +69,17 @@ public class UserDaoImpl implements UserDao {
 		logger.info("User loaded successfully, User detail: " + user.getName() + user.getEmail() + user.getId());
 		return user;
 	}
+
+	@Override
+	public int getCount() {
+		return sessionFactory.getCurrentSession().createQuery("from User").list().size();
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<User> findEnabledAll() {
+		return sessionFactory.getCurrentSession().createQuery("from User where enabled = 1").list();
+
+	}
 }

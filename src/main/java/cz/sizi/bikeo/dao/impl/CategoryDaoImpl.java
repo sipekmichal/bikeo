@@ -59,4 +59,15 @@ public class CategoryDaoImpl implements CategoryDao {
 		return category;
 	}
 
+	@Override
+	public int getCount() {
+		return sessionFactory.getCurrentSession().createQuery("from Category").list().size();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> findEnabledAll() {
+		return sessionFactory.getCurrentSession().createQuery("from Category where enabled = 1").list();
+	}
+
 }

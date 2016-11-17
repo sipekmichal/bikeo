@@ -66,4 +66,14 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public int getCount() {
+		return userDao.getCount();
+	}
+
+	@Override
+	public List<User> findEnabledAll() {
+		return userDao.findEnabledAll();
+	}
+
 }
