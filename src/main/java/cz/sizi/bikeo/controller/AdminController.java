@@ -1,12 +1,18 @@
 package cz.sizi.bikeo.controller;
 
+
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cz.sizi.bikeo.model.Video;
 import cz.sizi.bikeo.service.CategoryService;
 import cz.sizi.bikeo.service.UserService;
 import cz.sizi.bikeo.service.VideoService;
@@ -22,7 +28,8 @@ public class AdminController {
 	UserService userService;
 
 	@RequestMapping("/admin")
-	public String showDashboardPage() {
+	public String showDashboardPage(Model model) {
+		model.addAttribute("videosCount", videoService.getCount());
 		return "dashboard";
 	}
 
@@ -35,7 +42,7 @@ public class AdminController {
 	}
 
 	/**
-	 * Method for display videos's detail
+	 * Method for display video's detail
 	 */
 	@RequestMapping("/admin/video")
 	public String showVideoDetail(Model model, @RequestParam("id") Integer id) {
@@ -52,6 +59,19 @@ public class AdminController {
 	public String removeVideo(@RequestParam("id") Integer id) {
 		videoService.disable(videoService.findById(id));
 		return "redirect:/admin/videa?remove=true";
+	}
+
+	/**
+	 * Method for update video
+	 */
+	@RequestMapping(value = "/admin/video/upravit", method = RequestMethod.POST)
+	public String doEditCategory(Model model, @RequestParam("id") Integer id, BindingResult result) {
+		if (result.hasErrors()) {
+			return "video-detail";
+		}
+		model.addAttribute("updateVideo", videoService.findById(id));
+		videoService.update(videoService.findById(id));
+		return "redirect:/admin/videa?update=true";
 	}
 
 	@RequestMapping("/admin/kategorie")

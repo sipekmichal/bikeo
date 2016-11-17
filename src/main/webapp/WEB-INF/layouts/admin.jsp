@@ -29,7 +29,7 @@
 	<div class="row">
 		<div class="col-sm-3 col-md-2">
 			<div class="list-group">
-				<a href='<spring:url value="/admin/dashboard.html"></spring:url>'
+				<a href='<spring:url value="/admin.html"></spring:url>'
 					class="list-group-item ${current == 'dashboard'?'active':'' }"><span
 					class="glyphicon glyphicon-dashboard"></span> Rychlý přehled</a> <a
 					href='<spring:url value="/admin/videa.html"></spring:url>'

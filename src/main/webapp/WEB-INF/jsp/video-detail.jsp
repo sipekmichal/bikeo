@@ -2,39 +2,43 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layouts/taglibs.jsp"%>
 
-<div class="col-sm-9 col-md-9">
-	<form:input path="video.title" cssClass="form-control" />
-	<br>
-	<form:textarea path="video.content" cssClass="form-control" rows="5" />
-	<br>
-	<iframe width="100%" height="360" src="${video.url}" frameborder="0" allowfullscreen></iframe>
-</div>
+	<div class="col-sm-9 col-md-9">
+		<form:input path="video.title" cssClass="form-control" />
+		<br>
+		<form:textarea path="video.content" cssClass="form-control" rows="5" />
+		<br>
+		<iframe width="100%" height="360" src="${video.url}" frameborder="0"
+			allowfullscreen></iframe>
+	</div>
 
-<div class="col-sm-3 col-md-3">
-	<div class="panel panel-default">
-		<div class="panel-heading">Více</div>
-		<div class="panel-body">
-			<span class="glyphicon glyphicon-tags"></span>
-			<c:forEach items="${video.categories}" var="category">
+	<div class="col-sm-3 col-md-3">
+		<div class="panel panel-default">
+			<div class="panel-heading">Více</div>
+			<div class="panel-body">
+				<span class="glyphicon glyphicon-tags"></span>
+				<c:forEach items="${video.categories}" var="category">
 				${category.name}
 			</c:forEach>
-			<p class="blog-post-meta">
-				<span class="glyphicon glyphicon-user"></span> ${video.user.name}<br>
-				<span class="glyphicon glyphicon-calendar"></span>
-				<fmt:formatDate value="${video.publishDate}"
-					pattern="dd.MM.yyyy HH:mm" />
-			</p>
+				<p class="blog-post-meta">
+					<span class="glyphicon glyphicon-user"></span> ${video.user.name}<br>
+					<span class="glyphicon glyphicon-calendar"></span>
+					<fmt:formatDate value="${video.publishDate}"
+						pattern="dd.MM.yyyy HH:mm" />
+				</p>
+			</div>
+			<button type="button" class="btn btn-default">
+				<span class="glyphicon glyphicon-pencil"></span>
+			</button>
 		</div>
-		<button type="button" class="btn btn-default">
-			<span class="glyphicon glyphicon-pencil"></span>
-		</button>
+		<input type="submit" value="Uložit"
+			class="btn btn-success btn-lg btn-block">
+			<button type="button"
+			onclick="location.href='<spring:url value="/admin/video/upravit?id=${video.id}"></spring:url>'"
+			class="btn btn-default btn-lg btn-block">Uložit</button>
+		<button type="button"
+			onclick="location.href='<spring:url value="/admin/video/odstranit?id=${video.id}"></spring:url>'"
+			class="btn btn-default btn-lg btn-block">Odstranit</button>
 	</div>
-	<input type="submit" formaction="" value="Uložit"
-		class="btn btn-success btn-lg btn-block">
-	<button type="button"
-		onclick="location.href='<spring:url value="/admin/video/odstranit?id=${video.id}"></spring:url>'"
-		class="btn btn-default btn-lg btn-block">Odstranit</button>
-</div>
 
 <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 <script type="text/javascript">
