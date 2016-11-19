@@ -4,11 +4,11 @@
 
 <ul class="nav nav-list">
 	<li class="nav-header">Kategorie</li>
-	<li><a href="/bikeo/kategorie?id=1">Cross Country</a></li>
-	<li><a href="/bikeo/kategorie?id=2">Downhill</a></li>
-	<li><a href="/bikeo/kategorie?id=3">Road cycling</a></li>
-	<li><a href="/bikeo/kategorie?id=4">Freestyle</a></li>
-	<li><a href="/bikeo/kategorie?id=5">BMX</a></li>
+	<c:forEach items="${categories}" var="category">
+		<c:if test="${category.enabled == true}">
+			<li><a href="/bikeo/kategorie?id=${category.id}">${category.name}</a></li>
+		</c:if>
+	</c:forEach>
 	<li class="divider"></li>
 </ul>
 
