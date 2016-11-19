@@ -29,6 +29,7 @@ public class IndexController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String showIndex(Model model) {
 		model.addAttribute("videos", videoService.findEnabledAll());
+		model.addAttribute("categories", categoryService.findEnabledAll());
 		return "index";
 	}
 
@@ -38,6 +39,7 @@ public class IndexController {
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
 	public String showIndex2(Model model) {
 		model.addAttribute("videos", videoService.findEnabledAll());
+		model.addAttribute("categories", categoryService.findEnabledAll());
 		return "index";
 	}
 
