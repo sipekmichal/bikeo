@@ -11,7 +11,7 @@
 						alt="${video.title}">
 	
 					<div class="caption">
-						<h3>${video.title}</h3>
+						<h3>${fn:substring(video.title, 0, 25)}...</h3>
 					</div>
 				</a>
 			</div>

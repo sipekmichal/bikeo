@@ -108,19 +108,19 @@ public class VideoDaoImpl implements VideoDao {
 	}
 
 	@Override
-	public int getEnabledCount(Integer count) {
+	public int getEnabledCount() {
 		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 1").list().size();
 
 	}
 	
 	@Override
-	public int getDisabledCount(Integer count) {
+	public int getDisabledCount() {
 		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 0").list().size();
 
 	}
 	
 	@Override
-	public int getUnconfirmedCount(Integer count) {
+	public int getUnconfirmedCount() {
 		return sessionFactory.getCurrentSession().createQuery("from Video where confirmed = 0").list().size();
 
 	}

@@ -68,18 +68,18 @@ public class VideoServiceImpl implements VideoService {
 	}
 
 	@Override
-	public int getEnabledCount(Integer count) {
-		return videoDao.getEnabledCount(count);
+	public int getEnabledCount() {
+		return videoDao.getEnabledCount();
 	}
 
 	@Override
-	public int getDisabledCount(Integer count) {
-		return videoDao.getDisabledCount(count);
+	public int getDisabledCount() {
+		return videoDao.getDisabledCount();
 	}
 
 	@Override
-	public int getUnconfirmedCount(Integer count) {
-		return videoDao.getUnconfirmedCount(count);
+	public int getUnconfirmedCount() {
+		return videoDao.getUnconfirmedCount();
 	}
 
 	@Override

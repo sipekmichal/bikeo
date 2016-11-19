@@ -15,7 +15,7 @@
 				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<p>${video.title}</p>
+							<p>${fn:substring(video.title, 0, 30)}...</p>
 							<a href="<spring:url value="/admin/video?id=${video.id}" />"><img
 								src="http://i.ytimg.com/vi/${video.yid}/hqdefault.jpg"
 								class="img-responsive" alt="" /></a>

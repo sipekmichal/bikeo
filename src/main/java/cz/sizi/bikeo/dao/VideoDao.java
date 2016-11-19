@@ -13,10 +13,10 @@ public interface VideoDao extends GenericDao<Video, Integer> {
 
 	List<Video> findByCategory(Integer category);
 	
-	int getEnabledCount(Integer count);
+	int getEnabledCount();
 	
-	int getDisabledCount(Integer count);
+	int getDisabledCount();
 	
-	int getUnconfirmedCount(Integer count);
+	int getUnconfirmedCount();
 
 }
