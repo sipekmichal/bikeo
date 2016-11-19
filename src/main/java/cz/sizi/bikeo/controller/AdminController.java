@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cz.sizi.bikeo.model.Category;
 import cz.sizi.bikeo.model.Video;
 import cz.sizi.bikeo.service.CategoryService;
 import cz.sizi.bikeo.service.UserService;
@@ -29,8 +30,12 @@ public class AdminController {
 
 	@RequestMapping("/admin")
 	public String showDashboardPage(Model model) {
-		model.addAttribute("videosCount", videoService.getCount());
-		return "dashboard";
+		model.addAttribute("countEnabledVideos", videoService.getCount());
+		model.addAttribute("countUnconfirmedVideos", videoService.getUnconfirmedCount());
+		model.addAttribute("countUsers", userService.getCount());
+		//TODO: aktivni pocet uzivatelu = uzivatele, kteri jsou enabled a zverejnili alespon jedno video
+		model.addAttribute("countCategories", categoryService.getCount());
+		return "dashboard";	
 	}
 
 	@RequestMapping("/admin/videa")
@@ -58,7 +63,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/video/odstranit", method = RequestMethod.GET)
 	public String removeVideo(@RequestParam("id") Integer id) {
 		videoService.disable(videoService.findById(id));
-		return "redirect:/admin/videa?remove=true";
+		return "redirect:/admin/videa.html?remove=true";
 	}
 
 	/**
@@ -71,12 +76,7 @@ public class AdminController {
 		}
 		model.addAttribute("updateVideo", videoService.findById(id));
 		videoService.update(videoService.findById(id));
-		return "redirect:/admin/videa?update=true";
-	}
-
-	@RequestMapping("/admin/kategorie")
-	public String showCategoriesPage() {
-		return "categories";
+		return "redirect:/admin/videa.html?update=true";
 	}
 
 	@RequestMapping("/admin/users")

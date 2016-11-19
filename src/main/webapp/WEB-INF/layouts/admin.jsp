@@ -34,7 +34,7 @@
 					class="glyphicon glyphicon-dashboard"></span> Rychlý přehled</a> <a
 					href='<spring:url value="/admin/videa.html"></spring:url>'
 					class="list-group-item ${current == 'videos'?'active':'' }"><span
-					class="glyphicon glyphicon-file"></span> Videa</a> <a
+					class="glyphicon glyphicon-film"></span> Videa</a> <a
 					href='<spring:url value="/admin/kategorie.html"></spring:url>'
 					class="list-group-item ${current == 'categories'?'active':'' }"><span
 					class="glyphicon glyphicon-th-list"></span> Kategorie</a>

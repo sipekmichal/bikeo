@@ -29,7 +29,8 @@
 	</definition>
 
 	<definition name="indexFilteredByCat" extends="mainDefinition">
-		<put-attribute name="bodyContent" value="/WEB-INF/jsp/indexFilteredByCat.jsp" />
+		<put-attribute name="bodyContent"
+			value="/WEB-INF/jsp/indexFilteredByCat.jsp" />
 		<put-attribute name="pageTitle" value="bikeo.cz" />
 	</definition>
 
@@ -47,16 +48,52 @@
 	</definition>
 
 	<definition name="video-detail" extends="adminDefinition">
-		<put-attribute name="pageTitle" value="bikeo.cz - Detail videa" />
+		<put-attribute name="pageTitle" value="bikeo.cz - Videa - Detail" />
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/video-detail.jsp" />
 		<put-attribute name="current" value="videos" />
+	</definition>
+
+	<definition name="categories" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Kategorie" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/categories.jsp" />
+		<put-attribute name="current" value="categories" />
+	</definition>
+
+	<definition name="categoryDetail" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Kategorie - Detail" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/categoryDetail.jsp" />
+		<put-attribute name="current" value="categories" />
+	</definition>
+
+	<definition name="categoryEdit" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Kategorie - Upravit" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/categoryEdit.jsp" />
+		<put-attribute name="current" value="categories" />
+	</definition>
+
+	<definition name="users" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Uživatelé" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/users.jsp" />
+		<put-attribute name="current" value="users" />
+	</definition>
+
+	<definition name="userDetail" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Uživatelé - Detail" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/userDetail.jsp" />
+		<put-attribute name="current" value="users" />
+	</definition>
+
+	<definition name="userEdit" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="Upravit uživatele" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/userEdit.jsp" />
+		<put-attribute name="current" value="users" />
 	</definition>
 
 	<definition name="registrationSuccess" extends="index">
 		<put-attribute name="bodyContent"
 			value="/WEB-INF/jsp/registrationSuccess.jsp" />
 	</definition>
-	
+
 	<definition name="videoWatch" extends="mainDefinition">
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/videoWatch.jsp" />
 		<put-attribute name="pageTitle" value="bikeo.cz" />

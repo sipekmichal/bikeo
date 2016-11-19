@@ -12,15 +12,15 @@
 </div>
 <div class="navbar-collapse collapse">
 	<ul class="nav navbar-nav">
-		<li class="active"><a
-			href="<spring:url value=""></spring:url>">Administrace</a></li>
+		<li class="active"><a href="<spring:url value=""></spring:url>">Administrace</a></li>
 		<li><a
-			href="<spring:url value=""></spring:url>"><span
-				class="glyphicon glyphicon-pencil"></a></li>
+			href="<spring:url value="/admin/videa/pridat.html"></spring:url>"><span
+				class="glyphicon glyphicon-plus"></a></li>
 		<li><a
 			href="<spring:url value="/admin/settings.html"></spring:url>"><span
 				class="glyphicon glyphicon-cog"></a></li>
-		<li><a href='<spring:url value="/logout"></spring:url>'>Odhlásit se</a></li>
+		<li><a href='<spring:url value="/logout"></spring:url>'>Odhlásit
+				se</a></li>
 	</ul>
 	<form class="navbar-form navbar-right" method="get" action="#"
 		role="form">
