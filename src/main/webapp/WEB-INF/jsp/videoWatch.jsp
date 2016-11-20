@@ -2,16 +2,31 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="../layouts/taglibs.jsp"%>
 
-<h1>${video.title}</h1>
-<br>
-<center>
-	<iframe width="870px" height="490px" allowfullscreen="allowfullscreen"
+<div class="videoWrapper">
+	<iframe allowfullscreen="allowfullscreen"
 		mozallowfullscreen="mozallowfullscreen"
 		msallowfullscreen="msallowfullscreen"
 		oallowfullscreen="oallowfullscreen"
 		webkitallowfullscreen="webkitallowfullscreen"
 		src="https://www.youtube.com/embed/${video.yid}">
 	</iframe>
-</center>
-<p>${video.content}</p>
-<div>Zveřejněno: <b>${fn:substring(video.publishDate, 0, 10)}</b></div>
+</div>
+<div id="video-panel-section">
+	<h3>
+		<c:set var="videoTitle" value="${video.title}" />
+		${fn:toUpperCase(videoTitle)}
+	</h3>
+	<p>
+		Vložil: <a href="">${video.user.name}</a>
+	</p>
+	<hr>
+	<h4 class="text-right">${video.views} zhlédnutí</h4>
+</div>
+<div id="video-panel-section">
+	<strong>Publikováno <fmt:formatDate
+			value="${video.publishDate}" pattern="dd.MM.yyyy" /></strong>
+	<p>${video.content}</p>
+</div>
+<div id="video-panel-section">
+	<a href="">Nahlásit nefunkční video</a>
+</div>

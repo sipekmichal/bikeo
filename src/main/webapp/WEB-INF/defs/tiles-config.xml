@@ -12,6 +12,13 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
 	</definition>
 
+	<definition name="videoDetailDefinition" template="/WEB-INF/layouts/main2.jsp">
+		<put-attribute name="pageTitle" value="bikeo.cz" />
+		<put-attribute name="navbar" value="/WEB-INF/layouts/navbar.jsp" />
+		<put-attribute name="categoryMenu" value="/WEB-INF/layouts/videoMenu.jsp" />
+		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
+	</definition>
+
 	<!-- Main template for admin pages -->
 	<definition name="adminDefinition" template="/WEB-INF/layouts/admin.jsp">
 		<put-attribute name="adminNavbar" value="/WEB-INF/layouts/adminNavbar.jsp" />
@@ -94,7 +101,7 @@
 			value="/WEB-INF/jsp/registrationSuccess.jsp" />
 	</definition>
 
-	<definition name="videoWatch" extends="mainDefinition">
+	<definition name="videoWatch" extends="videoDetailDefinition">
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/videoWatch.jsp" />
 		<put-attribute name="pageTitle" value="bikeo.cz" />
 	</definition>
