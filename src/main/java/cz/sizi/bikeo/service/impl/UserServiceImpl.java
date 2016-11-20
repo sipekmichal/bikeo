@@ -1,6 +1,5 @@
 package cz.sizi.bikeo.service.impl;
 
-import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,9 +7,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cz.sizi.bikeo.dao.RoleDao;
 import cz.sizi.bikeo.dao.UserDao;
-import cz.sizi.bikeo.model.Role;
 import cz.sizi.bikeo.model.User;
 import cz.sizi.bikeo.service.UserService;
 
@@ -20,10 +17,7 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserDao userDao;
-	
-    @Autowired
-    private RoleDao roleDao;
-    
+	    
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -35,7 +29,6 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void save(User user) {
         user.setPasswd(bCryptPasswordEncoder.encode(user.getPasswd()));
-        user.setRoles(new HashSet<Role>(roleDao.findAll()));
         userDao.save(user);
 	}
 

@@ -1,5 +1,7 @@
 package cz.sizi.bikeo.controller;
 
+import java.util.HashSet;
+
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import cz.sizi.bikeo.model.Role;
 import cz.sizi.bikeo.model.User;
 import cz.sizi.bikeo.service.CategoryService;
+import cz.sizi.bikeo.service.RoleService;
 import cz.sizi.bikeo.service.UserService;
 import cz.sizi.bikeo.service.VideoService;
 
@@ -26,6 +30,9 @@ public class UserController {
 	
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	RoleService roleService;
 
 	@ModelAttribute("user")
 	public User construct() {
@@ -54,6 +61,7 @@ public class UserController {
 			// jak se to dela
 		}
 
+        user.setRoles(new HashSet<Role>(roleService.findByRoleName("ROLE_USER")));
 		user.setEnabled(true);
 		userService.save(user);
 
@@ -71,6 +79,7 @@ public class UserController {
 	@RequestMapping("/admin/uzivatele")
 	public String showUsersPage(Model model) {
 		model.addAttribute("users", userService.findAll());
+		model.addAttribute("roles", roleService.findAll());
 		return "users";
 	}
 

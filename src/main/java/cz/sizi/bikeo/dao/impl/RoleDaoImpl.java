@@ -57,13 +57,14 @@ public class RoleDaoImpl implements RoleDao {
 		return (Role) sessionFactory.getCurrentSession().get(Role.class, (Serializable) id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public Role findByRoleName(String roleName) {
+	public List<Role> findByRoleName(String roleName) {
 		Query query = sessionFactory.getCurrentSession().createQuery("from Role where name = :roleName");
 		query.setParameter("roleName", roleName);
 		Role role = (Role) query.uniqueResult();
 		logger.info("Role loaded successfully, Role detail: " + role.getName() + role.getId());
-		return role;
+		return query.list();
 
 	}
 
