@@ -21,11 +21,8 @@
 								class="img-responsive" alt="" /></a>
 						</div>
 						<div class="panel-footer">
-							<p>
-								<span class="glyphicon glyphicon-calendar"></span>
-								<fmt:formatDate value="${video.publishDate}"
-									pattern="dd.MM.yyyy" />
-							</p>
+							<span class="glyphicon glyphicon-calendar"></span>
+							<fmt:formatDate value="${video.publishDate}" pattern="dd.MM.yyyy" />
 						</div>
 					</div>
 				</div>

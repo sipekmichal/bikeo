@@ -16,5 +16,7 @@ public interface VideoService extends VideoDao {
 	int getDisabledCount();
 	
 	int getUnconfirmedCount();
+	
+	void setViews(Video video);
 
 }

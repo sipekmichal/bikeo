@@ -30,7 +30,7 @@ public class VideoDaoImpl implements VideoDao {
 	public List<Video> findAll() {
 		return sessionFactory.getCurrentSession().createQuery("from Video").list();
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public List<Video> findAllGroupedByPublishDateDesc() {
 		return sessionFactory.getCurrentSession().createQuery("from Video order by publishDate DESC").list();
@@ -67,8 +67,7 @@ public class VideoDaoImpl implements VideoDao {
 
 	@Override
 	public List<Video> findByDate(String date) {
-		Query query = sessionFactory.getCurrentSession()
-				.createQuery("from Video where publishDate like ':date%'");
+		Query query = sessionFactory.getCurrentSession().createQuery("from Video where publishDate like ':date%'");
 		query.setParameter("date", date);
 		@SuppressWarnings("unchecked")
 		List<Video> videos = query.list();
@@ -112,13 +111,13 @@ public class VideoDaoImpl implements VideoDao {
 		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 1").list().size();
 
 	}
-	
+
 	@Override
 	public int getDisabledCount() {
 		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 0").list().size();
 
 	}
-	
+
 	@Override
 	public int getUnconfirmedCount() {
 		return sessionFactory.getCurrentSession().createQuery("from Video where confirmed = 0").list().size();
@@ -129,6 +128,14 @@ public class VideoDaoImpl implements VideoDao {
 	@Override
 	public List<Video> findEnabledAll() {
 		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 1").list();
+	}
+
+	@Override
+	public void setViews(Video video) {
+		Query query = sessionFactory.getCurrentSession().createQuery("update Video set views = :views where id = :id");
+		query.setParameter("id", video.getId());
+		query.setParameter("views", video.getViews() + 1);
+		query.executeUpdate();
 	}
 
 }

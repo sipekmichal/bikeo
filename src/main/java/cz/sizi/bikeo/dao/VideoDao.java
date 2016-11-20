@@ -18,5 +18,7 @@ public interface VideoDao extends GenericDao<Video, Integer> {
 	int getDisabledCount();
 	
 	int getUnconfirmedCount();
+	
+	void setViews(Video video);
 
 }

@@ -86,5 +86,10 @@ public class VideoServiceImpl implements VideoService {
 	public List<Video> findEnabledAll() {
 		return videoDao.findEnabledAll();
 	}
+
+	@Override
+	public void setViews(Video video) {
+		videoDao.setViews(video);
+	}
 	
 }

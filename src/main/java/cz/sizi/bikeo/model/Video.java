@@ -41,6 +41,8 @@ public class Video {
 	private boolean enabled;
 	
 	private boolean confirmed;
+	
+	private int views;
 
 	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "user_id")
@@ -132,6 +134,14 @@ public class Video {
 
 	public void setConfirmed(boolean confirmed) {
 		this.confirmed = confirmed;
+	}
+
+	public int getViews() {
+		return views;
+	}
+
+	public void setViews(int views) {
+		this.views = views;
 	}
 	
 }

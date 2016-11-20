@@ -85,6 +85,7 @@ public class VideoController {
 			video.setConfirmed(false);
 			video.setYid(getYoutubeVideoId(video));
 			video.setUrl(getValidUrl(video));
+			video.setViews(0);
 			videoService.save(video);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -92,10 +93,17 @@ public class VideoController {
 
 		return "redirect:/index.html?success=true";
 	}
-	
+
+	/**
+	 * Method for display video's detail (videoWatch.jsp)
+	 */
 	@RequestMapping("/watch")
-	public String watchVideo(Model model, @RequestParam("v") Integer id) {
+	public String watchVideo(Model model, @RequestParam("v") Integer id, @ModelAttribute("video") Video video) {
 		model.addAttribute("video", videoService.findById(id));
+		model.addAttribute("videos", videoService.findEnabledAll());
+		model.addAttribute("categories", categoryService.findAll());
+
+		videoService.setViews(videoService.findById(id));
 		return "videoWatch";
 	}
 
