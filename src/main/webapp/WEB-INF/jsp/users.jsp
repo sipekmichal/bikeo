@@ -65,7 +65,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="password" class="col-sm-2 control-label">Role</label>
+				<label for="roles" class="col-sm-2 control-label">Role</label>
 				<div class="col-sm-10">
 					<form:select path="roles" items="${roles}" itemLabel="name"
 						itemValue="id" multiple="true" cssClass="form-control" />
