@@ -20,5 +20,7 @@ public interface VideoDao extends GenericDao<Video, Integer> {
 	int getUnconfirmedCount();
 	
 	void setViews(Video video);
+	
+	List<Video> searchVideosByKeyword(String keyword);
 
 }

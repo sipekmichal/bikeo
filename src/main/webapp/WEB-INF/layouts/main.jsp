@@ -51,8 +51,8 @@
 		<div id="search-section">
 			<div class="row">
 				<div class="span12">
-					<form action="" class="form-inline">
-						<input type="text" class="span9 search-input" id="search"
+					<form method="get" action="${pageContext.request.contextPath}/search" class="form-inline">						
+						<input type="text" name="keyword" class="span9 search-input" id="search"
 							data-provide="typeahead"
 							placeholder="Hledej dle klíčového slova..." data-items="4" />
 						<button type="submit" class="btn btn-blue">Hledej</button>
@@ -120,8 +120,7 @@
 	<script
 		src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 
-	<script src="${mainJs}"></script>
-
+	<script src="${mainJs}"></script>	
 
 </body>
 </html>

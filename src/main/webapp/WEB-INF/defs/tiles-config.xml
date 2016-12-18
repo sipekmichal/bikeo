@@ -41,6 +41,12 @@
 		<put-attribute name="pageTitle" value="bikeo.cz" />
 	</definition>
 
+	<definition name="searchResult" extends="mainDefinition">
+		<put-attribute name="bodyContent"
+			value="/WEB-INF/jsp/searchResult.jsp" />
+		<put-attribute name="pageTitle" value="bikeo.cz - Výsledky hledání" />
+	</definition>
+
 	<!-- Dashboard page layout extends template for admin pages -->
 	<definition name="dashboard" extends="adminDefinition">
 		<put-attribute name="pageTitle" value="bikeo.cz - Přehled" />

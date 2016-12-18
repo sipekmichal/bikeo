@@ -138,4 +138,12 @@ public class VideoDaoImpl implements VideoDao {
 		query.executeUpdate();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Video> searchVideosByKeyword(String keyword) {
+		return sessionFactory.getCurrentSession()
+				.createQuery("from Video where title like :searchKeyword and enabled = 1 and confirmed = 1")
+				.setParameter("searchKeyword", "%" + keyword + "%").list();
+	}
+
 }

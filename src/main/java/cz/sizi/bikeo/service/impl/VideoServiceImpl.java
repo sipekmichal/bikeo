@@ -91,5 +91,10 @@ public class VideoServiceImpl implements VideoService {
 	public void setViews(Video video) {
 		videoDao.setViews(video);
 	}
+
+	@Override
+	public List<Video> searchVideosByKeyword(String keyword) {
+		return videoDao.searchVideosByKeyword(keyword);
+	}
 	
 }
