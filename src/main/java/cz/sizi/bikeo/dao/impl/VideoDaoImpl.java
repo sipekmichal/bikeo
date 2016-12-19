@@ -129,6 +129,12 @@ public class VideoDaoImpl implements VideoDao {
 	public List<Video> findEnabledAll() {
 		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 1 and confirmed = 1").list();
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Video> findUnconfirmedAll() {
+		return sessionFactory.getCurrentSession().createQuery("from Video where confirmed = 0").list();
+	}
 
 	@Override
 	public void setViews(Video video) {
@@ -150,6 +156,13 @@ public class VideoDaoImpl implements VideoDao {
 	@Override
 	public List<Video> findAllGroupedByViewsDesc() {
 		return sessionFactory.getCurrentSession().createQuery("from Video where confirmed = 1 order by length(views) DESC").list();
+	}
+
+	@Override
+	public void confirm(Video video) {
+		Query query = sessionFactory.getCurrentSession().createQuery("update Video set confirmed = 1 where id = :id");
+		query.setParameter("id", video.getId());
+		query.executeUpdate();	
 	}
 
 }

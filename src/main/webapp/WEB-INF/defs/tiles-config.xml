@@ -54,6 +54,12 @@
 		<put-attribute name="current" value="videos" />
 	</definition>
 
+	<definition name="videosUnconfirmed" extends="adminDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Neschválená videa" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/videosUnconfirmed.jsp" />
+		<put-attribute name="current" value="videos" />
+	</definition>
+
 	<definition name="video-detail" extends="adminDefinition">
 		<put-attribute name="pageTitle" value="bikeo.cz - Videa - Detail" />
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/video-detail.jsp" />

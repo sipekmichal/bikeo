@@ -9,7 +9,7 @@ public interface VideoDao extends GenericDao<Video, Integer> {
 			
 	void enable(Video video);
 	
-	Video findByTitle(String tile);
+	Video findByTitle(String title);
 
 	List<Video> findByCategory(Integer category);
 	
@@ -21,10 +21,14 @@ public interface VideoDao extends GenericDao<Video, Integer> {
 	
 	void setViews(Video video);
 	
+	void confirm(Video video);
+	
 	List<Video> searchVideosByKeyword(String keyword);
 	
 	List<Video> findAllGroupedByPublishDateDesc();
 	
 	List<Video> findAllGroupedByViewsDesc();
+
+	List<Video> findUnconfirmedAll();
 
 }

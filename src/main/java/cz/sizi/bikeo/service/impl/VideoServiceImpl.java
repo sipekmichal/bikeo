@@ -106,5 +106,15 @@ public class VideoServiceImpl implements VideoService {
 	public List<Video> findAllGroupedByViewsDesc() {
 		return videoDao.findAllGroupedByViewsDesc();
 	}
+
+	@Override
+	public List<Video> findUnconfirmedAll() {
+		return videoDao.findUnconfirmedAll();
+	}
+
+	@Override
+	public void confirm(Video findById) {
+		videoDao.confirm(findById);
+	}
 	
 }

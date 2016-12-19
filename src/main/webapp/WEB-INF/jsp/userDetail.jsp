@@ -24,27 +24,6 @@
 			</button>
 		</c:if>
 	</div>
-	<div class="col-sm-8">
-		<div class="well well-lg">
-			<h3>Videa uživatele</h3>
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Název</th>
-						<th>Zveřejněno</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%-- 					<c:forEach items="${user.videos}" var="video"> --%>
-					<!-- 						<tr> -->
-					<%-- 							<td>${video.title}</td> --%>
-					<%-- 							<td>${video.publishDate}</td> --%>
-					<!-- 						</tr> -->
-					<%-- 					</c:forEach> --%>
-				</tbody>
-			</table>
-		</div>
-	</div>
 </div>
 
 <!-- Modal -->
