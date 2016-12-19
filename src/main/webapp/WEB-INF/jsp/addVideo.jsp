@@ -1,56 +1,53 @@
 <%@ include file="../layouts/taglibs.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <c:if test="${param.success eq true}">
 	<div class="alert alert-success">Video bylo přidáno.</div>
 </c:if>
 
 <form:form commandName="video"
-	cssClass="form-horizontal registrationForm" enctype="multipart/form-data">
+	cssClass="form-horizontal registrationForm"
+	enctype="multipart/form-data">
 	<div class="form-group">
 		<form:hidden path="id" class="form-control input-sm" />
 	</div>
 	<div class="form-group">
-		<label for="url" class="col-sm-2 control-label">URL</label>
+		<label for="url">URL</label>
 		<div class="col-sm-10">
 			<form:input path="url" cssClass="form-control" />
 			<form:errors path="url" />
 		</div>
 	</div>
+	<br>
 	<div class="form-group">
-		<label for="categories" class="col-sm-2 control-label">Kategorie</label>
+		<label for="categories">Kategorie</label>
 		<div class="col-sm-10">
 			<form:select path="categories" items="${categories}" itemLabel="name"
 				itemValue="id" multiple="true" cssClass="form-control" />
 			<form:errors path="categories" />
 		</div>
 	</div>
+	<br>
 	<div class="form-group">
-		<label for="title" class="col-sm-2 control-label">Titulek</label>
+		<label for="title">Titulek</label>
 		<div class="col-sm-10">
 			<form:input path="title" cssClass="form-control" />
 			<form:errors path="title" />
 		</div>
 	</div>
+	<br>
 	<div class="form-group">
-		<label for="content" class="col-sm-2 control-label">Popis</label>
+		<label for="content">Popis</label>
 		<div class="col-sm-10">
 			<form:textarea path="content" cssClass="form-control" rows="3" />
 			<form:errors path="content" />
 		</div>
 	</div>
 	<div class="form-group">
-		<label for="user" class="col-sm-2 control-label">Uživatel</label>
-		<div class="col-sm-10">
-			<form:select path="user.id" items="${users}" itemLabel="name"
-				itemValue="id" cssClass="form-control" />
-			<form:errors path="user.id" />
-		</div>
-	</div>
-	<div class="form-group">
 		<div class="col-sm-2">
-			<input type="submit" value="Nahrát" class="btn btn-primary">
+		<br>
+			<input type="submit" value="Nahrát" class="btn btn-primary btn-block">
 		</div>
 	</div>
 </form:form>

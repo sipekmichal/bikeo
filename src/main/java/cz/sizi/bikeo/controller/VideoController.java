@@ -10,6 +10,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -78,17 +80,17 @@ public class VideoController {
 	/**
 	 * Method for display video's add page (addVideo.jsp)
 	 */
-	@RequestMapping("/videa/pridat")
+	@RequestMapping("/pridat-video")
 	public String showVideoAddPage(Model model) {
 		model.addAttribute("users", userService.findAll());
 		model.addAttribute("categories", categoryService.findAll());
-		return "addVideo";
+		return "video-add";
 	}
 
 	/**
 	 * Method for save a video
 	 */
-	@RequestMapping(value = "/videa/pridat", method = RequestMethod.POST)
+	@RequestMapping(value = "/pridat-video", method = RequestMethod.POST)
 	public String saveVideo(Model model, @ModelAttribute("video") Video video, BindingResult result) {
 
 		// pokud dojde k chybe pri bindovani na formulari
@@ -106,7 +108,14 @@ public class VideoController {
 			video.setYid(getYoutubeVideoId(video));
 			video.setUrl(getValidUrl(video));
 			video.setViews(0);
+			
+			//set logged user
+			Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		    String authname = auth.getName(); //get logged user email
+			video.setUser(userService.findByLoggedName(authname));
+			
 			videoService.save(video);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

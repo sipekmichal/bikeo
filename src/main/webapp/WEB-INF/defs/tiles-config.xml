@@ -24,11 +24,6 @@
 		<put-attribute name="adminNavbar" value="/WEB-INF/layouts/adminNavbar.jsp" />
 	</definition>
 
-	<definition name="registration" extends="mainDefinition">
-		<put-attribute name="pageTitle" value="bikeo.cz - Registrace" />
-		<put-attribute name="bodyContent" value="/WEB-INF/jsp/registration.jsp" />
-	</definition>
-
 	<!-- Index page layout extends template for public pages -->
 	<definition name="index" extends="mainDefinition">
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/index.jsp" />
@@ -42,8 +37,7 @@
 	</definition>
 
 	<definition name="searchResult" extends="mainDefinition">
-		<put-attribute name="bodyContent"
-			value="/WEB-INF/jsp/searchResult.jsp" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/searchResult.jsp" />
 		<put-attribute name="pageTitle" value="bikeo.cz - Výsledky hledání" />
 	</definition>
 
@@ -64,6 +58,11 @@
 		<put-attribute name="pageTitle" value="bikeo.cz - Videa - Detail" />
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/video-detail.jsp" />
 		<put-attribute name="current" value="videos" />
+	</definition>
+
+	<definition name="video-add" extends="mainDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Přidat video" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/addVideo.jsp" />
 	</definition>
 
 	<definition name="categories" extends="adminDefinition">
@@ -111,4 +110,10 @@
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/videoWatch.jsp" />
 		<put-attribute name="pageTitle" value="bikeo.cz" />
 	</definition>
+
+	<definition name="registration" extends="mainDefinition">
+		<put-attribute name="pageTitle" value="bikeo.cz - Registrace" />
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/registration.jsp" />
+	</definition>
+
 </tiles-definitions>

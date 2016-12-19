@@ -4,6 +4,6 @@ import cz.sizi.bikeo.dao.UserDao;
 import cz.sizi.bikeo.model.User;
 
 public interface UserService extends UserDao {
-	User findByUsername(String username);
+	User findByLoggedName(String username);
 
 }
