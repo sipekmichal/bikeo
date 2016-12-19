@@ -54,6 +54,26 @@ public class VideoController {
 		model.addAttribute("videos", videoService.findEnabledAll());
 		return "index";
 	}
+	
+	/**
+	 * Method displays page with all videos ordered by publish date
+	 */
+	@RequestMapping("/videa/nejnovejsi")
+	public String showAllEnabledVideosOrderByPublishDate(Model model) {
+		model.addAttribute("categories", categoryService.findAll());
+		model.addAttribute("videos", videoService.findAllGroupedByPublishDateDesc());
+		return "index";
+	}
+	
+	/**
+	 * Method displays page with all videos ordered by views
+	 */
+	@RequestMapping("/videa/nejvice-sledovane")
+	public String showAllEnabledVideosOrderByViews(Model model) {
+		model.addAttribute("categories", categoryService.findAll());
+		model.addAttribute("videos", videoService.findAllGroupedByViewsDesc());
+		return "index";
+	}
 
 	/**
 	 * Method for display video's add page (addVideo.jsp)

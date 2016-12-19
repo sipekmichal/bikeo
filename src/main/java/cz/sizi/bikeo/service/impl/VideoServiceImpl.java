@@ -96,5 +96,15 @@ public class VideoServiceImpl implements VideoService {
 	public List<Video> searchVideosByKeyword(String keyword) {
 		return videoDao.searchVideosByKeyword(keyword);
 	}
+
+	@Override
+	public List<Video> findAllGroupedByPublishDateDesc() {
+		return videoDao.findAllGroupedByPublishDateDesc();
+	}
+
+	@Override
+	public List<Video> findAllGroupedByViewsDesc() {
+		return videoDao.findAllGroupedByViewsDesc();
+	}
 	
 }

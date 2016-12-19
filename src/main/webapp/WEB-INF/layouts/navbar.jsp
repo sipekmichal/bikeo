@@ -11,15 +11,18 @@
 	method="POST">
 	<div class="nav-collapse collapse">
 		<ul class="nav">
-			<li class="active"><a href="#">Filmy</a></li>
-			<li><a href="#about">Videa</a></li>
-			<li><a href="#contact">Seriály</a></li>
+			<li class="active"><a href="${pageContext.request.contextPath}">Videa</a></li>
+			<li><a href="${pageContext.request.contextPath}/pridat-video">Přidat
+					video</a></li>
 			<li class="dropdown"><a href="#" class="dropdown-toggle"
 				data-toggle="dropdown">Kategorie <b class="caret"></b></a>
 				<ul class="dropdown-menu">
-					<li><a href="404.htm">404 Page</a></li>
-					<li><a href="signin.htm">Sign In Page</a></li>
-					<li><a href="signup.htm">Sign Up Page</a></li>
+					<c:forEach items="${categories}" var="category">
+						<c:if test="${category.enabled == true}">
+							<li><a
+								href="${pageContext.request.contextPath}/kategorie?id=${category.id}">${category.name}</a></li>
+						</c:if>
+					</c:forEach>
 				</ul></li>
 		</ul>
 		<ul class="nav pull-right">
@@ -43,9 +46,11 @@
 							class="fs1" aria-hidden="true" data-icon="&#xe04f;"></div>
 						<ul class="dropdown-menu">
 							<security:authorize ifAnyGranted="ROLE_ADMIN">
-								<li><a href="/bikeo/admin">Administrace</a></li>
+								<li><a href="${pageContext.request.contextPath}/admin">Administrace</a></li>
 							</security:authorize>
-							<li><a href="/bikeo/videa/pridat">Přidat video</a></li>
+							<li><a
+								href="${pageContext.request.contextPath}/videa/pridat">Přidat
+									video</a></li>
 							<li><a href="#">Můj profil</a></li>
 							<li class="divider"></li>
 							<li><a href='<spring:url value="/logout"></spring:url>'>Odhlásit

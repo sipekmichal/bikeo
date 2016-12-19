@@ -12,7 +12,7 @@
 		<put-attribute name="footer" value="/WEB-INF/layouts/footer.jsp" />
 	</definition>
 
-	<definition name="videoDetailDefinition" template="/WEB-INF/layouts/main2.jsp">
+	<definition name="videoDetailDefinition" template="/WEB-INF/layouts/main-detail.jsp">
 		<put-attribute name="pageTitle" value="bikeo.cz" />
 		<put-attribute name="navbar" value="/WEB-INF/layouts/navbar.jsp" />
 		<put-attribute name="categoryMenu" value="/WEB-INF/layouts/videoMenu.jsp" />

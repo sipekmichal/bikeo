@@ -67,7 +67,8 @@ public class VideoDaoImpl implements VideoDao {
 
 	@Override
 	public List<Video> findByDate(String date) {
-		Query query = sessionFactory.getCurrentSession().createQuery("from Video where publishDate like ':date%'");
+		Query query = sessionFactory.getCurrentSession()
+				.createQuery("from Video where publishDate like ':date%' and enabled = 1");
 		query.setParameter("date", date);
 		@SuppressWarnings("unchecked")
 		List<Video> videos = query.list();
@@ -83,11 +84,10 @@ public class VideoDaoImpl implements VideoDao {
 				+ video.getEnabled());
 	}
 
-	// TODO: dotaz vylepsit, tohle je prasarna
 	@Override
 	public Video findByTitle(String title) {
-		return (Video) sessionFactory.getCurrentSession().createQuery("from Video where title='" + title + "'")
-				.uniqueResult();
+		return (Video) sessionFactory.getCurrentSession().createQuery("from Video where title = :title")
+				.setParameter("title", title).uniqueResult();
 	}
 
 	@Override
@@ -142,8 +142,14 @@ public class VideoDaoImpl implements VideoDao {
 	@Override
 	public List<Video> searchVideosByKeyword(String keyword) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from Video where title like :searchKeyword and enabled = 1 and confirmed = 1")
+				.createQuery("from Video where title like :searchKeyword and enabled = 1")
 				.setParameter("searchKeyword", "%" + keyword + "%").list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Video> findAllGroupedByViewsDesc() {
+		return sessionFactory.getCurrentSession().createQuery("from Video order by length(views) DESC").list();
 	}
 
 }

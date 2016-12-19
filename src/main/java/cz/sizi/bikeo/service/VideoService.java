@@ -20,5 +20,9 @@ public interface VideoService extends VideoDao {
 	void setViews(Video video);
 
 	List<Video> searchVideosByKeyword(String keyword);
+	
+	List<Video> findAllGroupedByPublishDateDesc();
+
+	List<Video> findAllGroupedByViewsDesc();
 
 }
