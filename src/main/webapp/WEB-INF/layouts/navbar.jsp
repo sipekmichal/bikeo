@@ -49,7 +49,7 @@
 								<li><a href="${pageContext.request.contextPath}/admin">Administrace</a></li>
 							</security:authorize>
 							<li><a
-								href="${pageContext.request.contextPath}/videa/pridat">Přidat
+								href="${pageContext.request.contextPath}/pridat-video">Přidat
 									video</a></li>
 							<li><a href="#">Můj profil</a></li>
 							<li class="divider"></li>
