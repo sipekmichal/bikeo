@@ -19,12 +19,12 @@
 		<li><a href='<spring:url value="/logout"></spring:url>'>Odhlásit
 				se</a></li>
 	</ul>
-	<form class="navbar-form navbar-right" method="get" action="#"
-		role="form">
-		<div class="form-group">
-			<input type="text" placeholder="Vyhledávání..." name="s"
-				class="form-control">
-		</div>
-	</form>
+<!-- 	<form class="navbar-form navbar-right" method="get" action="#" -->
+<!-- 		role="form"> -->
+<!-- 		<div class="form-group"> -->
+<!-- 			<input type="text" placeholder="Vyhledávání..." name="s" -->
+<!-- 				class="form-control"> -->
+<!-- 		</div> -->
+<!-- 	</form> -->
 </div>
 <!--/.nav-collapse -->

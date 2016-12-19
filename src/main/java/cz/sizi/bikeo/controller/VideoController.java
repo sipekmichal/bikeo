@@ -120,7 +120,13 @@ public class VideoController {
 			e.printStackTrace();
 		}
 
-		return "redirect:/index.html?success=true";
+		return "redirect:/addVideoSuccess";
+	}
+	
+	@RequestMapping(value = "/addVideoSuccess", method = RequestMethod.GET)
+	public String showVideoAddSuccess(Model model) {
+		model.addAttribute("categories", categoryService.findAll());
+		return "addVideoSuccess";
 	}
 
 	/**

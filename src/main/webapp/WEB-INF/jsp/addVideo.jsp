@@ -13,7 +13,7 @@
 		<form:hidden path="id" class="form-control input-sm" />
 	</div>
 	<div class="form-group">
-		<label for="url">URL</label>
+		<label for="url">Youtube URL</label>
 		<div class="col-sm-10">
 			<form:input path="url" cssClass="form-control" />
 			<form:errors path="url" />

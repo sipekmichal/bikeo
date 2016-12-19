@@ -112,6 +112,10 @@
 			value="/WEB-INF/jsp/registrationSuccess.jsp" />
 	</definition>
 
+	<definition name="addVideoSuccess" extends="index">
+		<put-attribute name="bodyContent" value="/WEB-INF/jsp/addVideoSuccess.jsp" />
+	</definition>
+
 	<definition name="videoWatch" extends="videoDetailDefinition">
 		<put-attribute name="bodyContent" value="/WEB-INF/jsp/videoWatch.jsp" />
 		<put-attribute name="pageTitle" value="bikeo.cz" />

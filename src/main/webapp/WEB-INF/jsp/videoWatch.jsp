@@ -28,5 +28,5 @@
 	<p>${video.content}</p>
 </div>
 <div id="video-panel-section">
-	<a href="">Nahlásit nefunkční video</a>
+	<a href="">TODO: Nahlásit nefunkční video</a>
 </div>

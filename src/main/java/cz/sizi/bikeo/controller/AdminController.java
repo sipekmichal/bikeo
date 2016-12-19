@@ -95,7 +95,7 @@ public class AdminController {
 	@RequestMapping(value = "/admin/video/zverejnit", method = RequestMethod.GET)
 	public String confirmVideo(@RequestParam("id") Integer id) {
 		videoService.confirm(videoService.findById(id));
-		return "redirect:/admin/videa.html?confirm=true";
+		return "redirect:/admin/videa/neschvalena.html?confirm=true";
 	}
 	
 	@RequestMapping("/admin/users")
