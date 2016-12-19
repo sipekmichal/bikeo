@@ -103,7 +103,7 @@ public class VideoController {
 			Date publishDate = new Date();
 			video.setPublishDate(publishDate);
 			// video is disabled and confirmed by default
-			video.setEnabled(false);
+			video.setEnabled(true);
 			video.setConfirmed(false);
 			video.setYid(getYoutubeVideoId(video));
 			video.setUrl(getValidUrl(video));

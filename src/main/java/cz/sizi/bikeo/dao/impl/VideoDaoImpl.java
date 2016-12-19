@@ -33,7 +33,7 @@ public class VideoDaoImpl implements VideoDao {
 
 	@SuppressWarnings("unchecked")
 	public List<Video> findAllGroupedByPublishDateDesc() {
-		return sessionFactory.getCurrentSession().createQuery("from Video order by publishDate DESC").list();
+		return sessionFactory.getCurrentSession().createQuery("from Video where confirmed = 1 order by publishDate DESC").list();
 	}
 
 	@Override
@@ -86,14 +86,14 @@ public class VideoDaoImpl implements VideoDao {
 
 	@Override
 	public Video findByTitle(String title) {
-		return (Video) sessionFactory.getCurrentSession().createQuery("from Video where title = :title")
+		return (Video) sessionFactory.getCurrentSession().createQuery("from Video where title = :title and confirmed = 1")
 				.setParameter("title", title).uniqueResult();
 	}
 
 	@Override
 	public List<Video> findByCategory(Integer category) {
 		Query query = sessionFactory.getCurrentSession()
-				.createQuery("from Video vid inner join vid.categories cat where cat.id = :category");
+				.createQuery("from Video vid inner join vid.categories cat where cat.id = :category and vid.confirmed = 1");
 		query.setParameter("category", category);
 		@SuppressWarnings("unchecked")
 		List<Video> videos = query.list();
@@ -127,7 +127,7 @@ public class VideoDaoImpl implements VideoDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Video> findEnabledAll() {
-		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 1").list();
+		return sessionFactory.getCurrentSession().createQuery("from Video where enabled = 1 and confirmed = 1").list();
 	}
 
 	@Override
@@ -142,14 +142,14 @@ public class VideoDaoImpl implements VideoDao {
 	@Override
 	public List<Video> searchVideosByKeyword(String keyword) {
 		return sessionFactory.getCurrentSession()
-				.createQuery("from Video where title like :searchKeyword and enabled = 1")
+				.createQuery("from Video where title like :searchKeyword and enabled = 1 and confirmed = 1")
 				.setParameter("searchKeyword", "%" + keyword + "%").list();
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Video> findAllGroupedByViewsDesc() {
-		return sessionFactory.getCurrentSession().createQuery("from Video order by length(views) DESC").list();
+		return sessionFactory.getCurrentSession().createQuery("from Video where confirmed = 1 order by length(views) DESC").list();
 	}
 
 }

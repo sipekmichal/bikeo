@@ -6,7 +6,7 @@
 <div class="col-sm-9 col-md-10">
 	<ol class="breadcrumb">
 		<li><a
-			href='<spring:url value="/admin/videa/nove.html"></spring:url>'>Nové
+			href='<spring:url value="/pridat-video.html"></spring:url>'>Nové
 				video</a></li>
 	</ol>
 	<div class="row">
@@ -15,7 +15,7 @@
 				<div class="col-md-3">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<p>${fn:substring(video.title, 0, 30)}...</p>
+							<p>${fn:substring(video.title, 0, 25)}...</p>
 							<a href="<spring:url value="/admin/video?id=${video.id}" />"><img
 								src="http://i.ytimg.com/vi/${video.yid}/hqdefault.jpg"
 								class="img-responsive" alt="" /></a>

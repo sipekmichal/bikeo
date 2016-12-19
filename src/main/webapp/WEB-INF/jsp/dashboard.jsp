@@ -5,14 +5,14 @@
 	<div class="col-sm-3 col-md-3">
 		<div class="well well-lg">
 			<p>Videa neschválená:</p>
-			<h1>${countUnconfirmedVideos}</h1>
+			<a href="${pageContext.request.contextPath}/admin/videa/neschvalena"><h1>${countUnconfirmedVideos}</h1></a>
 		</div>
 	</div>
 	<div class="col-sm-3 col-md-3">
 
 		<div class="well well-lg">
 			<p>Videí cekem:</p>
-			<h1>${countEnabledVideos}</h1>
+			<a href="${pageContext.request.contextPath}/admin/videa"><h1>${countEnabledVideos}</h1></a>
 		</div>
 	</div>
 	<div class="col-sm-3 col-md-3">

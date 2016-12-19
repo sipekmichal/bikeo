@@ -15,7 +15,9 @@
 					src="http://i.ytimg.com/vi/${video.yid}/hqdefault.jpg"
 					alt="${video.title}">
 					<div class="caption">
-						<h3>${fn:substring(video.title, 0, 25)}...</h3>
+						<p>
+							<strong>${fn:substring(video.title, 0, 30)}...</strong>
+						</p>
 					</div>
 				</a>
 			</div>

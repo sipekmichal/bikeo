@@ -27,11 +27,9 @@
 			</p>
 		</div>
 	</div>
-	<input type="submit" value="Uložit"
-		class="btn btn-success btn-lg btn-block">
 	<button type="button"
 		onclick="location.href='<spring:url value="/admin/video/upravit?id=${video.id}"></spring:url>'"
-		class="btn btn-default btn-lg btn-block">Uložit</button>
+		class="btn btn-success btn-lg btn-block">Uložit</button>
 	<button type="button"
 		onclick="location.href='<spring:url value="/admin/video/odstranit?id=${video.id}"></spring:url>'"
 		class="btn btn-default btn-lg btn-block">Odstranit</button>

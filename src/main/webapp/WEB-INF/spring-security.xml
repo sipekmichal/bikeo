@@ -7,8 +7,8 @@
            http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http use-expressions="true">
-		<intercept-url pattern="/admin/**"
-			access="hasAnyRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/pridat-video**" access="hasAnyRole('ROLE_ADMIN, ROLE_USER')" />
 		<form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/loginfailed" />
 		<logout logout-url="/logout" />
@@ -25,8 +25,9 @@
 				users-by-username-query="select email, passwd, enabled from User where email=? and enabled=1" />
 		</authentication-provider>
 	</authentication-manager>
-	
-	<beans:bean id="bcryptEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
-	
+
+	<beans:bean id="bcryptEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
 </beans:beans>
 
